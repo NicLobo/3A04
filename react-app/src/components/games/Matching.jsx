@@ -37,17 +37,17 @@ function Matching({ back, difficulty, character }) {
     p.textSize(text_size);
     p.fill(0);
     p.strokeWeight(0);
-    if (!_timer.isTimeOut() && successNum != 12) {
+    if (!_timer.isTimeOut() && successNum !== 12) {
       p.text("Time Left: ", WIDTH / 6, HEIGHT / 5);
       p.text(_timer.time, WIDTH / 6 + 150, HEIGHT / 5);
       _timer.tick(p);
-    } else if (!_timer.isTimeOut() && successNum == 12) {
+    } else if (!_timer.isTimeOut() && successNum === 12) {
       p.text("WIN!", WIDTH / 2 - text_size, HEIGHT / 5);
     } else {
       p.text("GAME OVER!", WIDTH / 2 - text_size * 3.1, HEIGHT / 5);
     }
     //delay if two selected cards are not the same.
-    if (delay == true) {
+    if (delay === true) {
       var start = p.millis();
       var end = start + 300;
       while (p.millis() < end) {}
@@ -56,9 +56,9 @@ function Matching({ back, difficulty, character }) {
 
     //draw game board
     drawCards(p, cardList);
-    if (flippedCards == 2) {
+    if (flippedCards === 2) {
       flippedCards = 0;
-      var flag = selectedCards[0].shape == selectedCards[1].shape;
+      var flag = selectedCards[0].shape === selectedCards[1].shape;
 
       if (!flag) {
         var id1 = selectedCards[0].id;
@@ -150,7 +150,7 @@ function Matching({ back, difficulty, character }) {
   }
 
   function mousePressed(p) {
-    if (!_timer.isTimeOut() && successNum != 12) {
+    if (!_timer.isTimeOut() && successNum !== 12) {
       for (var i = 0; i < cardList.length; i++) {
         if (isInBox(p, cardList[i])) {
           cardList[i].isFlipped = true;
@@ -178,7 +178,7 @@ function Matching({ back, difficulty, character }) {
       var times = 3 * choices.length;
       for (var i = 0; i < times; i++) {
         var num = Math.floor(Math.random() * choices.length);
-        if (count[num] == 2) {
+        if (count[num] === 2) {
           choices.splice(num, 1);
           count.splice(num, 1);
           continue;
@@ -187,7 +187,7 @@ function Matching({ back, difficulty, character }) {
           count[num]++;
           shapeList.push(choices[num]);
         }
-        if (choices.length == 0) {
+        if (choices.length === 0) {
           return shapeList;
         }
       }
@@ -224,7 +224,7 @@ function Matching({ back, difficulty, character }) {
     }
 
     tick(p) {
-      if (p.frameCount % FRAMERATE == 0) {
+      if (p.frameCount % FRAMERATE === 0) {
         this.time--;
       }
     }
