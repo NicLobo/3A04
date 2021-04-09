@@ -8,19 +8,20 @@ function Fixship({back, difficulty, character}) {
   const UNIT = 10; 
   let score = 0; 
   let highscore = 0; 
-  let width = 600;
-  let height = 400;
+  let width = 1000;
+  let height = 700;
   let hole 
   let time
   let health
+  let endgame = "playing";
+
+
   const setup = (p, canvasParentRef) => {
 
     //background
     p.createCanvas(width, height).parent(canvasParentRef);
     p.textFont('Space Mono'); 
-    p.background(255);
     p.smooth(); 
-
 
     //font
     p.fill(0);
@@ -29,35 +30,56 @@ function Fixship({back, difficulty, character}) {
 
     //objects
     hole = new Hole(difficulty, p, width, height);
-    health = new Healthbar(UNIT*100, UNIT*3, UNIT*5, UNIT*5, p);
-    time = new Timebar(UNIT*100, UNIT*3, UNIT*5, UNIT*10, p);
+    health = new Healthbar(6 - difficulty, UNIT, UNIT*5, UNIT*5, p, difficulty);
+    time = new Timebar(UNIT*90, UNIT, UNIT*5, UNIT*6, p);
   }
 
 
   let draw = (p) => {
-    p.clear();
-    p.fill(0);
-    p.text('FIX THE SHIP! ' + character, width/2, UNIT*3);
-    p.text('SCORE:',UNIT*5, UNIT*18);
-    p.text(score, UNIT*18, UNIT*18);
-    p.text('HIGHSCORE:',UNIT*5, UNIT*22);
-    p.text(highscore, UNIT*25, UNIT*22);
 
-    hole.display();
-    time.display();
-    health.display();
+    if(endgame === "playing"){
+      p.clear();
+      p.fill(0);
+      p.text('Fix the ship ' + character + "!", UNIT*5, UNIT*3);
+      p.text('SCORE:',UNIT*5, UNIT*10);
+      p.text(score, UNIT*18, UNIT*10);
+      p.text('HIGHSCORE:',UNIT*5, UNIT*13.5);
+      p.text(highscore, UNIT*25, UNIT*13.5);
+      hole.display();
+      time.display();
+      health.display();
+      hole.increaseSize();
+      if(hole.isExploded()){
+        health.takeDamge();
+        hole.resetPosition();
+        if(health.isDead()){
+          fullReset();
+          endgame = "lost"
+        }
+      } 
+      time.tickTime();
+      if(time.isTimeout()) {
+        fullReset();
+        endgame = "won"
+      }
+    }
 
-    hole.increaseSize();
-    if(hole.isExploded()){
-      health.takeDamge();
-      hole.resetPosition();
-      if(health.isDead()){fullReset();}
-    } 
+    else if(endgame === "won"){
+      p.fill(0);
+      p.rect(0,0,1000,700);
+      p.textSize(100);
+      p.fill(255);
+      p.text("YOU WON", UNIT*30, UNIT*30);
+    }
 
-
-    
-    time.tickTime();
-    if(time.isTimeout()) fullReset();
+    else if(endgame === "lost"){
+      p.fill(0);
+      p.rect(0,0,1000,700);
+      p.textSize(100);
+      p.fill(255);
+      p.text("YOU LOST", UNIT*30, UNIT*30);
+    }
+    p.redraw();
   }
 
   function mousePressed(p) {

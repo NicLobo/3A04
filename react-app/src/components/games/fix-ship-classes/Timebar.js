@@ -8,7 +8,7 @@ class Timebar{
     }
 
     tickTime() {
-      this.time -=1;
+      this.time -=2;
     }
 
     isTimeout(){
@@ -16,7 +16,7 @@ class Timebar{
     }
 
     reset(){
-      this.time = 1000;
+      this.time = 900;
     }
     display() {
       this.p5.fill("blue");

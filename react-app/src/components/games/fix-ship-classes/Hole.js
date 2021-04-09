@@ -1,8 +1,8 @@
 class Hole{
     constructor(delay, p, width, height) {
       this.p5 = p
-      this.x = p.random(width);
-      this.y = p.random(height);
+      this.x = p.random(50,width - 50);
+      this.y = p.random(300,height -50);
       this.diameter = 10;
       this.delay = delay;
       this.speed = 1;
@@ -29,8 +29,8 @@ class Hole{
     }
 
     resetPosition(){
-      this.x = this.p5.random(0,this.width);
-      this.y = this.p5.random(0,this.height);
+      this.x = this.p5.random(50,this.width - 50);
+      this.y = this.p5.random(300,this.height -50);
       this.diameter = 10; 
     }
 

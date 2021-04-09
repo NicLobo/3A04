@@ -1,14 +1,15 @@
 class Healthbar{
-    constructor(health, height, x, y, p) {
+    constructor(health, height, x, y, p, difficulty) {
       this.health = health;
       this.height = height;
       this.x = x;
       this.y = y;
       this.p5 = p
+      this.difficulty = difficulty;
     }
 
     takeDamge() {
-      this.health -=100;
+      this.health -=1;
     } 
 
     isDead(){
@@ -16,12 +17,13 @@ class Healthbar{
     }
 
     reset(){
-      this.health = 1000;
+      this.health = 6 - this.difficulty;
     }
 
     display(){
       this.p5.fill("red");
-      this.p5.rect(this.x, this.y, this.health, this.height);
+      for(let i = 0; i < this.health; i++ ){
+      this.p5.rect(this.x +(100*i), this.y, 100 , this.height);}
     }
   }
   export default Healthbar;
