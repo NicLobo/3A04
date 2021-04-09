@@ -1,13 +1,13 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 
-function Navigation() {
+function Topbar() {
   return (
-    <div className="navigation">
+    <div className="top-bar">
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            React App
+            Shipwreck
           </Link>
         </div>
       </nav>
@@ -15,4 +15,4 @@ function Navigation() {
   );
 }
 
-export default withRouter(Navigation);
+export default withRouter(Topbar);
