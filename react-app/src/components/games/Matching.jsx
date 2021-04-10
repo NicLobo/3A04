@@ -21,7 +21,7 @@ function Matching({ back, difficulty, character }) {
 
   function setup(p, canvasParentRef) {
     var canvas = p.createCanvas(WIDTH, HEIGHT).parent(canvasParentRef);
-    canvas.position((p.windowWidth - WIDTH) / 2, (p.windowHeight - HEIGHT) / 2);
+    //canvas.position((p.windowWidth - WIDTH) / 2, (p.windowHeight - HEIGHT) / 2);
 
     p.frameRate(FRAMERATE);
     card = new Card(115, 140, sideLength);
