@@ -25,7 +25,7 @@ function Home() {
         <div className="button-container">
           <div className="big-button">
             <Link className="navbar-brand" to="/minigame" >
-              Mini Game
+              Main Hub
             </Link>
           </div>
           <div className="big-button">

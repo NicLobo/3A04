@@ -34,7 +34,7 @@ function MiniGame() {
   return (
     <div className="mini-game">
       <div className="container">
-        <h1 className="font-weight-light">MiniGame</h1>
+        <h1 className="font-weight-light">Main Hub</h1>
         <Link className="" to="/" >
           Back
         </Link>
