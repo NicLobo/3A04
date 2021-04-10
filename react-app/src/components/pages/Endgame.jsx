@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
-import ls from 'local-storage'
 
 function Endgame() {
 
@@ -12,7 +10,7 @@ function Endgame() {
                     Back
         </Link>
             </div>
-        <div>
+        <div className="endgame">
             <p>You Won/Lost</p>
             <p>Current Score:</p>
             <p>High Score:</p>
