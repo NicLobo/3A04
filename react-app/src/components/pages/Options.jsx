@@ -39,7 +39,7 @@ function Options() {
           <input
             type="range"
             min="1"
-            max="5"
+            max="3"
             step="1"
             value={difficulty}
             onChange={updateDifficulty}
