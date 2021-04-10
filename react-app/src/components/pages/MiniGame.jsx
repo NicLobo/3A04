@@ -6,6 +6,7 @@ import SideScroll from '../games/SideScroll'
 import Trivia from '../games/Trivia'
 import Matching from '../games/Matching'
 import Fixship from '../games/Fixship'
+import MazeGame from '../games/MazeGame'
 
 function MiniGame() {
   
@@ -56,12 +57,17 @@ function MiniGame() {
               <p>Fixship game</p>
               <button id="fixship" onClick={openGame}>Load</button>
             </div>
+            <div className="game-button">
+              <p>Maze game</p>
+              <button id="maze" onClick={openGame}>Load</button>
+            </div>
           </div>
         }
         { currentGame === 'sidescroll' && <SideScroll back={back} difficulty={difficulty} character={character} />  }
         { currentGame === 'trivia' && <Trivia back={back} difficulty={difficulty} character={character} />  }
         { currentGame === 'matching' && <Matching back={back} difficulty={difficulty} character={character} />  }
         { currentGame === 'fixship' && <Fixship back={back} difficulty={difficulty} character={character} />  }
+        { currentGame === 'maze' && <MazeGame back={back} difficulty={difficulty} character={character} />  }
       </div>
     </div>
   );
