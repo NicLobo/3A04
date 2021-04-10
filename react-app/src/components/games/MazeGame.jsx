@@ -3,6 +3,7 @@ import Sketch from 'react-p5'
 
 import Cell from './maze-classes/cell.js'
 import Maze from './maze-classes/maze.js'
+import Timebar from './maze-classes/Timebar.js'
 
 function MazeGame({ back, difficulty, character }) {
     var width = 600;
@@ -17,8 +18,10 @@ function MazeGame({ back, difficulty, character }) {
     var currentCell;
     var winCell = false;
 
+    var timeBar;
+
     function setup(p, canvasParentRef) {
-        p.createCanvas(width, height).parent(canvasParentRef);
+        p.createCanvas(width, height + 10).parent(canvasParentRef);
 
         cols = p.floor(width / w);
         rows = p.floor(height / w);
@@ -26,16 +29,55 @@ function MazeGame({ back, difficulty, character }) {
         var m = new Maze();
         maze = m.maze;
 
-        // make cell objects, put in grid array
-        for (var j = 0; j < rows; j++) {
-            for (var i = 0; i < cols; i++) {
-                var cell = new Cell(i, j, w);
-                cell = makeCellProperty(cell, j, i);
-                grid.push(cell);
+        // create grid
+        createGrid();
+
+        // assign current cell
+        assignCurrentCell();
+
+        // take associated difficulty and set time accordingly
+        let time;
+        switch (difficulty) {
+            case 1:
+                time = 1800;
+                break;
+            case 2:
+                time = 1500;
+                break;
+            case 3:
+                time = 1200;
+                break;
+        }
+        timeBar = new Timebar(time, 10, 0, height, p);
+    }
+
+    function draw(p) {
+        if (winCell || timeBar.isTimeout()) {
+            p.clear();
+            if(winCell){
+                // win state
+                p.text("You win!", width / 2, height / 2);
+            }
+            else{
+                // lose state
+                p.text("You ran out of time!", width / 2, height / 2);
             }
         }
+        else {
+            p.background(51);
 
-        // find starting cell and assign it as current cell
+            for (var i = 0; i < grid.length; i++) {
+                grid[i].show(p);
+            }
+            timeBar.display();
+            timeBar.tickTime();
+        }
+    }
+
+    /**
+     * Find starting cell and assign it as current cell
+     */
+    function assignCurrentCell(){
         for (var k = 0; k < grid.length; k++) {
             if (grid[k].property === "P") {
                 currentCell = grid[k];
@@ -43,16 +85,15 @@ function MazeGame({ back, difficulty, character }) {
         }
     }
 
-    function draw(p) {
-        if (winCell) {
-            p.clear();
-            p.text("You win", width / 2, height / 2);
-        }
-        else {
-            p.background(51);
-
-            for (var i = 0; i < grid.length; i++) {
-                grid[i].show(p);
+    /**
+     * Create the grid by making cell objects and putting them in the array
+     */
+    function createGrid(){
+        for (var j = 0; j < rows; j++) {
+            for (var i = 0; i < cols; i++) {
+                var cell = new Cell(i, j, w);
+                cell = makeCellProperty(cell, j, i);
+                grid.push(cell);
             }
         }
     }
