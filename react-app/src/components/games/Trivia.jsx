@@ -3,18 +3,6 @@ import Sketch from "react-p5";
 
 function Trivia({back, difficulty, character}) {
 
-  var correctAnswers = 0;
-  var q1value = 0;
-  var q2value = 0;
-  var q3value = 0;
-  var q4value = 0;
-  var q5value = 0;
-  var q6value = 0;
-  var q7value = 0;
-  var q8value = 0;
-  var q9value = 0;
-  var q10value = 0;
-
   var input1, input2;
   var question1, question2;
   var answer1;
@@ -50,7 +38,6 @@ function Trivia({back, difficulty, character}) {
     answer1 = input1.value()
     question1.position(-100, -100)
     if (answer1 === "C" || answer1 === "c") {
-      q1value = 1;
       question2.position(0, 20);
       input2.position(200, 70);
       input1.position(-1000, -1000);
