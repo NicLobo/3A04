@@ -1,5 +1,6 @@
 import React from "react";
-import Sketch from 'react-p5'
+import Sketch from 'react-p5';
+import Timer from "../pages/Timer";
 
 import Ground from "./side-scroll-classes/ground.js";
 import Avatar from "./side-scroll-classes/avatar.js";
@@ -134,6 +135,7 @@ function SideScroll({back, difficulty, character}) {
     <div className="text-center">
         <h3>Sidescroll</h3>
         <button onClick={back}>Back to game menu</button>
+        <Timer minutes={2} />
         <div className="game mt-2">
           <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />
         </div>

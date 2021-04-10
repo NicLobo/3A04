@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import ls from 'local-storage'
+import Timer from "./Timer";
 
 function Home() {
   
