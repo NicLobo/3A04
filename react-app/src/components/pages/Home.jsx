@@ -33,6 +33,11 @@ function Home() {
               Options
             </Link>
           </div>
+          <div className="big-button">
+            <Link className="navbar-brand" to="/endgame" >
+              Endgame
+            </Link>
+          </div>
         </div>
       </div>
     </div>

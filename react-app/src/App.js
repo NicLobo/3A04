@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import { Topbar, Home, MiniGame, Options } from "./components/pages";
+import { Topbar, Home, MiniGame, Options, Endgame } from "./components/pages";
 
 function App() {
 
@@ -18,6 +18,9 @@ function App() {
           } />
           <Route path="/options" exact component={() => 
             <Options/>
+          } />
+          <Route path="/endgame" exact component={() => 
+            <Endgame/>
           } />
         </Switch>
       </Router>
