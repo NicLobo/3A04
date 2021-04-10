@@ -1,8 +1,9 @@
 /**
- * Maze constructor
+ * Maze class
  */
-function Maze() {
-    this.maze = [["X", "P", "O", "O", "X", "X", "X", "X", "X", "O", "X", "X", "X", "X", "X"],
+class Maze {
+    constructor(){
+        this.maze = [["X", "P", "O", "O", "X", "X", "X", "X", "X", "O", "X", "X", "X", "X", "X"],
     ["X", "O", "X", "X", "X", "O", "X", "X", "X", "O", "O", "O", "O", "X", "X"],
     ["X", "O", "O", "O", "X", "O", "O", "O", "O", "X", "O", "X", "O", "X", "X"],
     ["X", "O", "X", "O", "X", "X", "O", "X", "X", "X", "O", "X", "O", "X", "O"],
@@ -15,4 +16,7 @@ function Maze() {
     ["O", "O", "O", "O", "O", "O", "O", "O", "X", "O", "O", "O", "X", "O", "F"],
     ["O", "X", "X", "X", "X", "X", "O", "X", "X", "O", "X", "X", "X", "X", "X"],
     ["X", "O", "O", "O", "O", "O", "O", "O", "X", "O", "O", "O", "O", "O", "X"]];
+    }
 }
+
+export default Maze;

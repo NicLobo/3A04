@@ -1,4 +1,4 @@
-function Cell(i, j) {
+function Cell(i, j, w) {
     this.i = i;
     this.j = j;
     this.x = this.i * w;
@@ -7,27 +7,39 @@ function Cell(i, j) {
     this.property = "X";
     this.win = false;
 
-    this.show = function () {
+    /**
+     * Show cell
+     * 
+     * @param {*} p 
+     */
+    this.show = function (p) {
         if(this.property === "X"){
-            fill(0);
-            rect(this.x, this.y, w, w);
+            p.fill(0);
+            p.rect(this.x, this.y, w, w);
         }
         else if(this.property === "O"){
-            fill(255);
-            rect(this.x, this.y, w, w);
+            p.fill(255);
+            p.rect(this.x, this.y, w, w);
         }
         else if(this.property === "F"){
-            fill(255, 0, 0);
-            rect(this.x, this.y, w, w);
+            p.fill(255, 0, 0);
+            p.rect(this.x, this.y, w, w);
             this.win = true;
         }
         else if(this.property === "P"){
-            fill(0, 255, 0);
-            rect(this.x, this.y, w, w);
+            p.fill(0, 255, 0);
+            p.rect(this.x, this.y, w, w);
         }
     }
 
+    /**
+     * Set property of the cell
+     * 
+     * @param {*} property - new property of the cell
+     */
     this.setProperty = function(property){
         this.property = property;
     }
 }
+
+export default Cell;

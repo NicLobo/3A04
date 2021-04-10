@@ -1,8 +1,8 @@
 import React from "react"
 import Sketch from 'react-p5'
 
-import Cell from './maze/cell.js'
-import Maze from './maze/maze.js'
+import Cell from './maze-classes/cell.js'
+import Maze from './maze-classes/maze.js'
 
 function MazeGame({ back, difficulty, character }) {
     var width = 600;
@@ -12,7 +12,6 @@ function MazeGame({ back, difficulty, character }) {
 
     var grid = [];
 
-    var m;
     var maze;
 
     var currentCell;
@@ -21,25 +20,25 @@ function MazeGame({ back, difficulty, character }) {
     function setup(p, canvasParentRef) {
         p.createCanvas(width, height).parent(canvasParentRef);
 
-        cols = floor(width / w);
-        rows = floor(height / w);
+        cols = p.floor(width / w);
+        rows = p.floor(height / w);
 
-        m = new Maze();
+        var m = new Maze();
         maze = m.maze;
 
         // make cell objects, put in grid array
         for (var j = 0; j < rows; j++) {
             for (var i = 0; i < cols; i++) {
-                var cell = new Cell(i, j);
+                var cell = new Cell(i, j, w);
                 cell = makeCellProperty(cell, j, i);
                 grid.push(cell);
             }
         }
 
         // find starting cell and assign it as current cell
-        for (var j = 0; j < grid.length; j++) {
-            if (grid[j].property === "P") {
-                currentCell = grid[j];
+        for (var k = 0; k < grid.length; k++) {
+            if (grid[k].property === "P") {
+                currentCell = grid[k];
             }
         }
     }
@@ -53,7 +52,7 @@ function MazeGame({ back, difficulty, character }) {
             p.background(51);
 
             for (var i = 0; i < grid.length; i++) {
-                grid[i].show();
+                grid[i].show(p);
             }
         }
     }
@@ -68,7 +67,7 @@ function MazeGame({ back, difficulty, character }) {
      */
     function makeCellProperty(cell, j, i) {
         // determine cell properties from maze
-        property = maze[j][i];
+        let property = maze[j][i];
         cell.setProperty(property);
         return cell;
     }
@@ -128,19 +127,19 @@ function MazeGame({ back, difficulty, character }) {
         }
 
         if (valid) {
-            makeMove(p.keyCode, i, j);
+            makeMove(p, i, j);
         }
     }
 
     /**
      * Assign properties based on valid move made
      * 
-     * @param {*} keyCode - key pressed code
+     * @param {*} p
      * @param {*} i - column i
      * @param {*} j - row j
      */
-    function makeMove(keyCode, i, j) {
-        if (keyCode === p.UP_ARROW) {
+    function makeMove(p, i, j) {
+        if (p.keyCode === p.UP_ARROW) {
             // assign P property to new cell
             grid[(j - 1) * cols + i].property = "P";
             // get win state boolean
@@ -148,7 +147,7 @@ function MazeGame({ back, difficulty, character }) {
             // set new cell as current cell
             currentCell = grid[(j - 1) * cols + i];
         }
-        else if (keyCode === p.DOWN_ARROW) {
+        else if (p.keyCode === p.DOWN_ARROW) {
             // assign P property to new cell
             grid[(j + 1) * cols + i].property = "P";
             // get win state boolean
@@ -156,7 +155,7 @@ function MazeGame({ back, difficulty, character }) {
             // set new cell as current cell
             currentCell = grid[(j + 1) * cols + i];
         }
-        else if (keyCode === p.RIGHT_ARROW) {
+        else if (p.keyCode === p.RIGHT_ARROW) {
             // assign P property to new cell
             grid[j * cols + i + 1].property = "P"
             // get win state boolean
@@ -164,7 +163,7 @@ function MazeGame({ back, difficulty, character }) {
             // set new cell as current cell
             currentCell = grid[j * cols + i + 1];
         }
-        else if (keyCode === p.LEFT_ARROW) {
+        else if (p.keyCode === p.LEFT_ARROW) {
             // assign P property to new cell
             grid[j * cols + i - 1].property = "P"
             // get win state boolean
