@@ -134,7 +134,7 @@ function SideScroll({back, difficulty, character}) {
   return (
     <div className="text-center">
         <h3>Sidescroll</h3>
-        <button onClick={back}>Back to game menu</button>
+        <button onClick={back}>Return to main hub</button>
         <Timer minutes={2} />
         <div className="game mt-2">
           <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />

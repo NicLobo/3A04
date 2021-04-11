@@ -219,7 +219,7 @@ function MazeGame({ back, difficulty, character }) {
     return (
         <div className="text-center">
             <h3>Maze</h3>
-            <button onClick={back}>Back to game menu</button>
+            <button onClick={back}>Return to main hub</button>
             <div className="game mt-2">
                 <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />
             </div>

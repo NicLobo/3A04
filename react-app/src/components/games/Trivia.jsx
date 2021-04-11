@@ -78,8 +78,8 @@ function Trivia({back, difficulty, character}) {
       p.textSize(100);
       i = i+1;
       if (i % 50 === 0) flag *=-1
-      if(flag == 1) p.fill(0,255,0);
-      if(flag == -1)p.fill(255,255,255);  
+      if(flag === 1) p.fill(0,255,0);
+      if(flag === -1)p.fill(255,255,255);  
 
       p.text("ACCESS GRANTED!", UNIT*10, UNIT*30);
     }
@@ -88,8 +88,8 @@ function Trivia({back, difficulty, character}) {
       p.textSize(100);
       i = i+1;
       if (i % 50 === 0)flag *=-1
-      if(flag == 1) p.fill(255,0,0);
-      if(flag == -1)p.fill(255,255,255); 
+      if(flag === 1) p.fill(255,0,0);
+      if(flag === -1)p.fill(255,255,255); 
     
       p.text("ACCES DENIED!", UNIT*10, UNIT*30);
     }
@@ -125,7 +125,7 @@ function Trivia({back, difficulty, character}) {
   return (
     <div className="text-center">
         <h3>Trivia</h3>
-        <button onClick={back}>Back to game menu</button>
+        <button onClick={back}>Return to main hub</button>
         <div className="game mt-2">
           <Sketch setup={setup} draw={draw} mousePressed={mousePressed}/>
         </div>

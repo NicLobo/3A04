@@ -42,24 +42,24 @@ function MiniGame() {
         { currentGame === '' &&
           <div className="game-col" >
             <div className="game-button">
-              <p>Sidescrolling game</p>
-              <button id="sidescroll" onClick={openGame}>Load</button>
+              <p>Archives</p>
+              <button id="sidescroll" onClick={openGame}>Upload Files</button>
             </div>
             <div className="game-button">
-              <p>Trivia game</p>
-              <button id="trivia" onClick={openGame}>Load</button>
+              <p>Security Room</p>
+              <button id="trivia" onClick={openGame}>Reset Password</button>
             </div>
             <div className="game-button">
-              <p>Matching game</p>
-              <button id="matching" onClick={openGame}>Load</button>
+              <p>Command Center</p>
+              <button id="matching" onClick={openGame}>Map Stars</button>
             </div>
             <div className="game-button">
-              <p>Fixship game</p>
-              <button id="fixship" onClick={openGame}>Load</button>
+              <p>Docking Bay</p>
+              <button id="fixship" onClick={openGame}>Repair Engine</button>
             </div>
             <div className="game-button">
-              <p>Maze game</p>
-              <button id="maze" onClick={openGame}>Load</button>
+              <p>Fuel Pit</p>
+              <button id="maze" onClick={openGame}>Switch Fuel Core</button>
             </div>
           </div>
         }

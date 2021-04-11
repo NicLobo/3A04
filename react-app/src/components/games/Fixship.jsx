@@ -7,7 +7,6 @@ import Timebar from "./fix-ship-classes/Timebar"
 function Fixship({back, difficulty, character}) {
   const UNIT = 10; 
   let score = 0; 
-  let highscore = 0; 
   let width = 1000;
   let height = 700;
   let hole 
@@ -31,10 +30,9 @@ function Fixship({back, difficulty, character}) {
 
     //objects
     hole = new Hole(difficulty, p, width, height);
-    health = new Healthbar(6 - difficulty, UNIT, UNIT*5, UNIT*5, p, difficulty);
+    health = new Healthbar(5 - difficulty, UNIT, UNIT*5, UNIT*5, p, difficulty);
     time = new Timebar(UNIT*90, UNIT, UNIT*5, UNIT*6, p);
   }
-
 
   let draw = (p) => {
     p.clear();
@@ -51,13 +49,11 @@ function Fixship({back, difficulty, character}) {
         health.takeDamge();
         hole.resetPosition();
         if(health.isDead()){
-          fullReset();
           endgame = "lost"
         }
       } 
       time.tickTime();
       if(time.isTimeout()) {
-        fullReset();
         endgame = "won"
       }
     }
@@ -66,8 +62,8 @@ function Fixship({back, difficulty, character}) {
       p.textSize(100);
       i = i+1;
       if (i % 50 === 0) flag *=-1
-      if(flag == 1) p.fill(0,255,0);
-      if(flag == -1)p.fill(255,255,255);  
+      if(flag === 1) p.fill(0,255,0);
+      if(flag === -1)p.fill(255,255,255);  
 
       p.text("ENGINE FIXED!", UNIT*10, UNIT*30);
     }
@@ -76,8 +72,8 @@ function Fixship({back, difficulty, character}) {
       p.textSize(100);
       i = i+1;
       if (i % 50 === 0)flag *=-1
-      if(flag == 1) p.fill(255,0,0);
-      if(flag == -1)p.fill(255,255,255); 
+      if(flag === 1) p.fill(255,0,0);
+      if(flag === -1)p.fill(255,255,255); 
     
       p.text("ENGINE BROKEN!", UNIT*10, UNIT*30);
     }
@@ -94,27 +90,10 @@ function Fixship({back, difficulty, character}) {
     }
   }
 
-
-
-  function fullReset(p){
-    if(score > highscore){
-      highscore = score;
-    }
-    score = 0;
-    hole.reset();
-    time.reset();
-    health.reset()
-
-  }
-
-
-
-
-
   return (
     <div className="text-center">
         <h3>Sidescroll</h3>
-        <button onClick={back}>Back to game menu</button>
+        <button onClick={back}>Return to main hub</button>
         <div className="game mt-2">
           <Sketch setup={setup} draw={draw} mousePressed={mousePressed}/>
         </div>
