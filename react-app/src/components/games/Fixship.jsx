@@ -14,7 +14,8 @@ function Fixship({back, difficulty, character}) {
   let time
   let health
   let endgame = "playing";
-
+  let i = 0;
+  let flag =1;
 
   const setup = (p, canvasParentRef) => {
 
@@ -36,18 +37,15 @@ function Fixship({back, difficulty, character}) {
 
 
   let draw = (p) => {
+    p.clear();
+    p.fill(0);
+    p.textSize(30);
+    p.text('Fix the ship ' + character + "!", UNIT*5, UNIT*3);
 
+    time.display();
+    health.display();
     if(endgame === "playing"){
-      p.clear();
-      p.fill(0);
-      p.text('Fix the ship ' + character + "!", UNIT*5, UNIT*3);
-      p.text('SCORE:',UNIT*5, UNIT*10);
-      p.text(score, UNIT*18, UNIT*10);
-      p.text('HIGHSCORE:',UNIT*5, UNIT*13.5);
-      p.text(highscore, UNIT*25, UNIT*13.5);
       hole.display();
-      time.display();
-      health.display();
       hole.increaseSize();
       if(hole.isExploded()){
         health.takeDamge();
@@ -65,19 +63,23 @@ function Fixship({back, difficulty, character}) {
     }
 
     else if(endgame === "won"){
-      p.fill(0);
-      p.rect(0,0,1000,700);
       p.textSize(100);
-      p.fill(255);
-      p.text("YOU WON", UNIT*30, UNIT*30);
+      i = i+1;
+      if (i % 50 === 0) flag *=-1
+      if(flag == 1) p.fill(0,255,0);
+      if(flag == -1)p.fill(255,255,255);  
+
+      p.text("ENGINE FIXED!", UNIT*10, UNIT*30);
     }
 
     else if(endgame === "lost"){
-      p.fill(0);
-      p.rect(0,0,1000,700);
       p.textSize(100);
-      p.fill(255);
-      p.text("YOU LOST", UNIT*30, UNIT*30);
+      i = i+1;
+      if (i % 50 === 0)flag *=-1
+      if(flag == 1) p.fill(255,0,0);
+      if(flag == -1)p.fill(255,255,255); 
+    
+      p.text("ENGINE BROKEN!", UNIT*10, UNIT*30);
     }
     p.redraw();
   }
