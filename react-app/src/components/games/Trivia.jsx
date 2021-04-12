@@ -74,7 +74,9 @@ function Trivia({back, difficulty, character}) {
         endgame = "won"
       }
     }
+
     if(endgame === "won"){
+      //WIN STATE
       p.textSize(100);
       i = i+1;
       if (i % 50 === 0) flag *=-1
@@ -85,6 +87,7 @@ function Trivia({back, difficulty, character}) {
     }
 
     if(endgame === "lost"){
+      //LOSE STATE
       p.textSize(100);
       i = i+1;
       if (i % 50 === 0)flag *=-1
