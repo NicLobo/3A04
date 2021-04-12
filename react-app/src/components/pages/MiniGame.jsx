@@ -12,6 +12,7 @@ function MiniGame() {
   
   const [difficulty, setDiff] = useState(1);
   const [character, setCharacter] = useState('Default Name');
+  const [health, setHealth] = useState(100);
 
   useEffect(() => {
     if (ls.get('difficulty')) {
@@ -20,7 +21,10 @@ function MiniGame() {
     if (ls.get('character')) {
       setCharacter(ls.get('character'))
     }
-  },[difficulty, character])
+    if (ls.get('health')) {
+      setHealth(ls.get('health'))
+    }
+  },[difficulty, character, health])
 
   const [currentGame, setGame] = useState('')
 
@@ -39,6 +43,7 @@ function MiniGame() {
         <Link className="" to="/" >
           Back
         </Link>
+        <h4>Health: {health}</h4>
         { currentGame === '' &&
           <div className="game-col" >
             <div className="game-button">
