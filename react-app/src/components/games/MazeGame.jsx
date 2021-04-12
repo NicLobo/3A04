@@ -62,18 +62,22 @@ function MazeGame({ back, difficulty, character }) {
             p.text("We've marked where the core is located, along with the place you need to get to.", 15, height / 2 + 20);
             p.text("Use the arrow keys to move that core through the maze.", 15, height / 2 + 40)
             p.text("You only have a limited amount of time, so get there quickly!", 15, height / 2 + 60);
+            p.text("When you're ready, click the screen. Good luck.", 15, height / 2 + 80);
         }
         else if (winCell || timeBar.isTimeout()) {
+            // WIN STATE OR LOSE STATE TODO
             p.clear();
             if(winCell){
                 // win state
                 p.textSize(16)
                 p.text("Good work! You successfully switched cores!", width / 4, height / 2);
+                p.text("Click \"Back to Menu\" to continue.", width / 4, height / 2 + 20);
             }
             else{
                 // lose state
                 p.textSize(16)
                 p.text("You ran out of time!", width / 4, height / 2);
+                p.text("Click \"Back to Menu\" to continue.", width / 4, height / 2 + 20);
             }
         }
         else {
