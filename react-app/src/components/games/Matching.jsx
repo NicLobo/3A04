@@ -7,7 +7,7 @@ function Matching({ back, difficulty, character }) {
   var rowNum = 3;
   var colNum = 4;
   var sideLength = 80;
-  var time = 60 / difficulty-difficulty;
+  var time = 30 - 10 * difficulty;
   var FRAMERATE = 30;
   var flippedCards = 0;
   var selectedCards = [];
