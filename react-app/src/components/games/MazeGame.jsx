@@ -19,6 +19,7 @@ function MazeGame({ back, difficulty, character }) {
     var winCell = false;
 
     var timeBar;
+    var openingScreen = true;
 
     function setup(p, canvasParentRef) {
         p.createCanvas(width, height + 10).parent(canvasParentRef);
@@ -52,18 +53,31 @@ function MazeGame({ back, difficulty, character }) {
     }
 
     function draw(p) {
-        if (winCell || timeBar.isTimeout()) {
+        if(openingScreen){
+            /**
+             * Opening text explaining context of the game.
+             */
+            p.textSize(16)
+            p.text("Your objective is to get the fuel core to the correct place.", 15, height / 2);
+            p.text("We've marked where the core is located, along with the place you need to get to.", 15, height / 2 + 20);
+            p.text("Use the arrow keys to move that core through the maze.", 15, height / 2 + 40)
+            p.text("You only have a limited amount of time, so get there quickly!", 15, height / 2 + 60);
+        }
+        else if (winCell || timeBar.isTimeout()) {
             p.clear();
             if(winCell){
                 // win state
-                p.text("You win!", width / 2, height / 2);
+                p.textSize(16)
+                p.text("Good work! You successfully switched cores!", width / 4, height / 2);
             }
             else{
                 // lose state
-                p.text("You ran out of time!", width / 2, height / 2);
+                p.textSize(16)
+                p.text("You ran out of time!", width / 4, height / 2);
             }
         }
         else {
+            // maze
             p.background(51);
 
             for (var i = 0; i < grid.length; i++) {
@@ -111,6 +125,10 @@ function MazeGame({ back, difficulty, character }) {
         let property = maze[j][i];
         cell.setProperty(property);
         return cell;
+    }
+
+    function mousePressed(p){
+        openingScreen = false;
     }
 
     function keyPressed(p) {
@@ -221,7 +239,7 @@ function MazeGame({ back, difficulty, character }) {
             <h3>Maze</h3>
             <button onClick={back}>Return to main hub</button>
             <div className="game mt-2">
-                <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />
+                <Sketch setup={setup} draw={draw} keyPressed={keyPressed} mousePressed={mousePressed} />
             </div>
         </div>
     );
