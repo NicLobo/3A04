@@ -5,6 +5,7 @@ import QA from "./trivia-classes/QA";
 import Healthbar from "./trivia-classes/Healthbar";
 import Timebar from "./trivia-classes/Timebar";
 import Button from "./trivia-classes/Button"
+import { decreaseHealth, incrementCompletedGames } from '../../Game'
 
 function Trivia({back, difficulty, character}) {
   const UNIT = 10; 
@@ -84,6 +85,8 @@ function Trivia({back, difficulty, character}) {
       if(flag === -1)p.fill(255,255,255);  
 
       p.text("ACCESS GRANTED!", UNIT*10, UNIT*30);
+
+      incrementCompletedGames();
     }
 
     if(endgame === "lost"){
@@ -94,7 +97,9 @@ function Trivia({back, difficulty, character}) {
       if(flag === 1) p.fill(255,0,0);
       if(flag === -1)p.fill(255,255,255); 
     
-      p.text("ACCES DENIED!", UNIT*10, UNIT*30);
+      p.text("ACCESS DENIED!", UNIT*10, UNIT*30);
+
+      decreaseHealth();
     }
     p.redraw();
   }

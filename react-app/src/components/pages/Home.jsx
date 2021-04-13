@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import ls from 'local-storage'
-import Timer from "./Timer";
 
-function Home() {
+function Home( { health, gamesCompleted, isGameOver } ) {
   
   const [difficulty, setDiff] = useState(1);
   const [character, setCharacter] = useState('Default Name');
@@ -21,6 +20,8 @@ function Home() {
     <div className="home">
       <div className="container">
         <h1 className="font-weight-light">Home</h1>
+        <h4>Health Remaining: {health}</h4>
+        <h4>Games Completed: {gamesCompleted}</h4>
         <h4>Difficulty: {difficulty}</h4>
         <h4>Character: {character}</h4>
         <div className="button-container">
@@ -34,11 +35,11 @@ function Home() {
               Options
             </Link>
           </div>
-          <div className="big-button">
+          {/* <div className="big-button">
             <Link className="navbar-brand" to="/endgame" >
               Endgame
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

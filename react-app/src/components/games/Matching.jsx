@@ -1,5 +1,6 @@
 import React from "react";
 import Sketch from "react-p5";
+import { decreaseHealth, incrementCompletedGames } from '../../Game'
 
 function Matching({ back, difficulty, character }) {
   var WIDTH = 640;
@@ -43,8 +44,10 @@ function Matching({ back, difficulty, character }) {
       _timer.tick(p);
     } else if (!_timer.isTimeOut() && successNum === 12) {
       p.text("WIN!", WIDTH / 2 - text_size, HEIGHT / 5);
+      incrementCompletedGames();
     } else {
       p.text("GAME OVER!", WIDTH / 2 - text_size * 3.1, HEIGHT / 5);
+      decreaseHealth();
     }
     //delay if two selected cards are not the same.
     if (delay === true) {

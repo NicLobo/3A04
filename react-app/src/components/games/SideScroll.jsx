@@ -1,10 +1,9 @@
 import React from "react";
 import Sketch from 'react-p5';
-import Timer from "../pages/Timer";
-
 import Ground from "./side-scroll-classes/ground.js";
 import Avatar from "./side-scroll-classes/avatar.js";
 import Barrier from "./side-scroll-classes/barrier.js";
+import { decreaseHealth, incrementCompletedGames } from '../../Game'
 
 function SideScroll({back, difficulty, character}) {
 
@@ -87,6 +86,19 @@ function SideScroll({back, difficulty, character}) {
     p.text('Score:' + score, 10, 20);
   
     if (isGameOver) {
+
+      if (difficulty === 1) {
+        if (score >= 5) incrementCompletedGames();
+        else decreaseHealth();
+      } 
+      else if (difficulty === 2) {
+        if (score >= 10) incrementCompletedGames();
+        else decreaseHealth();
+      }
+      else {
+        if (score >= 15) incrementCompletedGames();
+        else decreaseHealth();
+      }
   
       // dark overlay
       p.fill(0, 0, 0, 100);
@@ -135,7 +147,6 @@ function SideScroll({back, difficulty, character}) {
     <div className="text-center">
         <h3>Sidescroll</h3>
         <button onClick={back}>Return to main hub</button>
-        <Timer minutes={2} />
         <div className="game mt-2">
           <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />
         </div>

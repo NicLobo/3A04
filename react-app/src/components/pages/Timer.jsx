@@ -1,41 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import { timeout } from '../../Game'
 
-const Timer = ({ minutes = 0, seconds = 0 }) => {
-    const [paused, setPaused] = React.useState(false);
-    const [over, setOver] = React.useState(false);
-    const [[m, s], setTime] = React.useState([minutes, seconds]);
+export default function Timer({ active, gameOver, difficulty }) {
 
-    const tick = () => {
-        if (paused || over) return;
-        if (m === 0 && s === 0) setOver(true);
-        else if (m === 0 && s === 0) {
-            setTime([59, 59]);
-        } else if (s == 0) {
-            setTime([m - 1, 59]);
-        } else {
-            setTime([m, s - 1]);
+    // let initMinutes;
+    // if (difficulty === 3) initMinutes = 1;
+    // else if (difficulty === 2) initMinutes = 2;
+    // else initMinutes = 3;
+
+    let initMinutes = 3;
+    let initSeconds = 0;
+    const [time, setTime] = useState({ minutes: initMinutes, seconds: initSeconds });
+
+    // triggers if the game ends, the time changes, and toggles when a turn changes
+    useEffect(() => {
+        let interval = null;
+        if (active) {
+            interval = setInterval(() => {
+                if (gameOver) {
+                    clearInterval(interval);
+                }
+                else if (time.seconds > 0) {
+                    setTime({ minutes: time.minutes, seconds: time.seconds - 1 });
+                }
+                else if (time.minutes > 0) {
+                    setTime({ minutes: time.minutes - 1, seconds: 59 });
+                }
+                else {
+                    timeout();
+                    clearInterval(interval);
+                }
+            }, 1000);
+        } else if (!active && time.seconds !== 0) {
+            clearInterval(interval);
         }
-    };
+        return () => clearInterval(interval);
+    }, [active, time, gameOver]);
 
-    const reset = () => {
-        setTime([parseInt(minutes), parseInt(seconds)]);
-        setPaused(false);
-        setOver(false);
-    };
-
-    React.useEffect(() => {
-        const timerID = setInterval(() => tick(), 1000);
-        return () => clearInterval(timerID);
-    });
-
+    // return the timer
     return (
-        <div>
-            <p>{`${m
-                .toString()
-                .padStart(2, '0')}:${s.toString().padStart(2, '0')}`}</p>
-            <div>{over ? "Time's up!" : ''}</div>
+        <div className="timer">
+            <p>{"Remaining Time: "}{time.minutes}:{time.seconds < 10 ? `0${time.seconds}` : time.seconds}</p>
         </div>
-    );
-};
-
-export default Timer;
+    )
+}

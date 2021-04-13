@@ -1,23 +1,17 @@
-import { Link, withRouter } from "react-router-dom";
 
-function Endgame() {
+function Endgame({ result, active, health, gamesCompleted } ) {
 
     return (
         <div className="options">
             <div className="container">
                 <h1 className="font-weight-light">Endgame</h1>
-                <Link className="" to="/" >
-                    Back
-        </Link>
             </div>
         <div className="endgame">
-            <p>You Won/Lost</p>
-            <p>Current Score:</p>
-            <p>High Score:</p>
-            <p>Longest Time Survived:</p>
+            <p>{result}</p>
+            <p>Final Score: { (health + 1) * (gamesCompleted + 1) * 100 }</p>
         </div>
         </div>
     );
 }
 
-export default withRouter(Endgame);
+export default Endgame;

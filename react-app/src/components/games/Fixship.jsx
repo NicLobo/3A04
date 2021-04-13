@@ -1,6 +1,6 @@
 import React from "react";
 import Sketch from 'react-p5'
-
+import { decreaseHealth, incrementCompletedGames } from '../../Game'
 import Hole from "./fix-ship-classes/Hole";
 import Healthbar from "./fix-ship-classes/Healthbar"
 import Timebar from "./fix-ship-classes/Timebar"
@@ -66,6 +66,8 @@ function Fixship({back, difficulty, character}) {
       if(flag === -1)p.fill(255,255,255);  
 
       p.text("ENGINE FIXED!", UNIT*10, UNIT*30);
+
+      incrementCompletedGames();
     }
 
     else if(endgame === "lost"){
@@ -76,6 +78,8 @@ function Fixship({back, difficulty, character}) {
       if(flag === -1)p.fill(255,255,255); 
     
       p.text("ENGINE BROKEN!", UNIT*10, UNIT*30);
+
+      decreaseHealth();
     }
     p.redraw();
   }

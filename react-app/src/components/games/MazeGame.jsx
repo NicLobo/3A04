@@ -1,6 +1,6 @@
 import React from "react"
 import Sketch from 'react-p5'
-
+import { decreaseHealth, incrementCompletedGames } from '../../Game'
 import Cell from './maze-classes/cell.js'
 import Maze from './maze-classes/maze.js'
 import Timebar from './maze-classes/Timebar.js'
@@ -72,12 +72,14 @@ function MazeGame({ back, difficulty, character }) {
                 p.textSize(16)
                 p.text("Good work! You successfully switched cores!", width / 4, height / 2);
                 p.text("Click \"Back to Menu\" to continue.", width / 4, height / 2 + 20);
+                incrementCompletedGames();
             }
             else{
                 // lose state
                 p.textSize(16)
                 p.text("You ran out of time!", width / 4, height / 2);
                 p.text("Click \"Back to Menu\" to continue.", width / 4, height / 2 + 20);
+                decreaseHealth();
             }
         }
         else {
