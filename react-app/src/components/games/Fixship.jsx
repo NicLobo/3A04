@@ -4,12 +4,13 @@ import { decreaseHealth, incrementCompletedGames } from '../../Game'
 import Hole from "./fix-ship-classes/Hole";
 import Healthbar from "./fix-ship-classes/Healthbar"
 import Timebar from "./fix-ship-classes/Timebar"
-function Fixship({back, difficulty, character}) {
+function Fixship({back, difficulty, character, /*score*/}) {
   const UNIT = 10; 
   let score = 0; 
   let width = 1000;
   let height = 700;
   let hole 
+  let holehit = 0; 
   let time
   let health
   let endgame = "playing";
@@ -54,6 +55,7 @@ function Fixship({back, difficulty, character}) {
       } 
       time.tickTime();
       if(time.isTimeout()) {
+
         endgame = "won"
       }
     }
@@ -66,6 +68,10 @@ function Fixship({back, difficulty, character}) {
       if(flag === -1)p.fill(255,255,255);  
 
       p.text("ENGINE FIXED!", UNIT*10, UNIT*30);
+
+
+      //THIS IS SCORE
+      //score+= health.getHealth()*100 + 100*holehit;
       if(i== 400){
       incrementCompletedGames();
       }
@@ -88,6 +94,7 @@ function Fixship({back, difficulty, character}) {
 
   function mousePressed(p) {
    if(hole.isHit(p.mouseX,p.mouseY)){
+     holehit+=1;
       hole.resetPosition();
       score+=10;
     if(score === 50){
