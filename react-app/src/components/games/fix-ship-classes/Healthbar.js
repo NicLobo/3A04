@@ -16,6 +16,10 @@ class Healthbar{
       return this.health === 0;
     }
 
+    getHealth(){
+      return this.health;
+    }
+    
     reset(){
       this.health = 6 - this.difficulty;
     }
