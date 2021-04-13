@@ -85,8 +85,9 @@ function Trivia({back, difficulty, character}) {
       if(flag === -1)p.fill(255,255,255);  
 
       p.text("ACCESS GRANTED!", UNIT*10, UNIT*30);
-
-      incrementCompletedGames();
+      
+      if(i == 400){
+      incrementCompletedGames();}
     }
 
     if(endgame === "lost"){
@@ -99,7 +100,9 @@ function Trivia({back, difficulty, character}) {
     
       p.text("ACCESS DENIED!", UNIT*10, UNIT*30);
 
+      if(i == 400){
       decreaseHealth();
+     }
     }
     p.redraw();
   }

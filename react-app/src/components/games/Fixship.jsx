@@ -66,8 +66,9 @@ function Fixship({back, difficulty, character}) {
       if(flag === -1)p.fill(255,255,255);  
 
       p.text("ENGINE FIXED!", UNIT*10, UNIT*30);
-
+      if(i== 400){
       incrementCompletedGames();
+      }
     }
 
     else if(endgame === "lost"){
@@ -78,8 +79,9 @@ function Fixship({back, difficulty, character}) {
       if(flag === -1)p.fill(255,255,255); 
     
       p.text("ENGINE BROKEN!", UNIT*10, UNIT*30);
-
+      if(i== 400){
       decreaseHealth();
+      }
     }
     p.redraw();
   }
