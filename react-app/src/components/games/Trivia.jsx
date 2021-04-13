@@ -7,7 +7,7 @@ import Timebar from "./trivia-classes/Timebar";
 import Button from "./trivia-classes/Button"
 import { decreaseHealth, incrementCompletedGames } from '../../Game'
 
-function Trivia({back, difficulty, character}) {
+function Trivia({back, difficulty, character, /*score*/ }) {
   const UNIT = 10; 
   let width = 1000;
   let height = 700;
@@ -15,6 +15,7 @@ function Trivia({back, difficulty, character}) {
   let questions
   let health
   let time
+  let qAnswered;
   let buttonA;
   let buttonB;
   let buttonC; 
@@ -85,7 +86,7 @@ function Trivia({back, difficulty, character}) {
       if(flag === -1)p.fill(255,255,255);  
 
       p.text("ACCESS GRANTED!", UNIT*10, UNIT*30);
-      
+      // score = qAnswered*100 
       if(i == 400){
       incrementCompletedGames();}
     }
@@ -106,26 +107,30 @@ function Trivia({back, difficulty, character}) {
     }
     p.redraw();
   }
-
+  
   function mousePressed(p) {
    if(endgame === "playing")
     if(buttonA.isHit(p.mouseX, p.mouseY)){
       if(!questions.checkAnswer("A")) health.takeDamge();
+      else qAnswered+=1;
       questions.newQuestion();
       time.reset();
     }
     else if(buttonB.isHit(p.mouseX, p.mouseY)){
       if(!questions.checkAnswer("B")) health.takeDamge();
+      else qAnswered+=1;
       questions.newQuestion();
       time.reset();
     }
     else if(buttonC.isHit(p.mouseX, p.mouseY)){
       if(!questions.checkAnswer("C")) health.takeDamge();
+      else qAnswered+=1;
       questions.newQuestion();
       time.reset();
     }
     else if(buttonD.isHit(p.mouseX, p.mouseY)){
       if(!questions.checkAnswer("D")) health.takeDamge();
+      else qAnswered+=1;
       questions.newQuestion();
       time.reset();
     }
