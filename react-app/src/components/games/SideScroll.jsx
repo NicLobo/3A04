@@ -94,18 +94,9 @@ function SideScroll({back, difficulty, character}) {
 
     if (isGameOver) {
 
-      if (difficulty === 1) {
-        if (score >= 5) incrementCompletedGames();
-        else decreaseHealth();
-      } 
-      else if (difficulty === 2) {
-        if (score >= 10) incrementCompletedGames();
-        else decreaseHealth();
-      }
-      else {
-        if (score >= 15) incrementCompletedGames();
-        else decreaseHealth();
-      }
+      // win/fail state
+      if (score >= 10) incrementCompletedGames();
+      else decreaseHealth();
   
       // dark overlay
       p.fill(0, 0, 0, 100);
