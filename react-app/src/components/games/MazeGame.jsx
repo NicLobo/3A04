@@ -5,7 +5,7 @@ import Cell from './maze-classes/cell.js'
 import Maze from './maze-classes/maze.js'
 import Timebar from './maze-classes/Timebar.js'
 
-function MazeGame({ back, difficulty, character }) {
+function MazeGame({ back, difficulty, character, score }) {
     var width = 600;
     var height = 520;
     var cols, rows;
@@ -73,6 +73,8 @@ function MazeGame({ back, difficulty, character }) {
                 p.text("Good work! You successfully switched cores!", width / 4, height / 2);
                 p.text("Click \"Back to Menu\" to continue.", width / 4, height / 2 + 20);
                 incrementCompletedGames();
+                // THIS IS scoring for the game - take the time, increase score based on harder difficulty
+                // score += timeBar.time / (4 - difficulty)
             }
             else{
                 // lose state
