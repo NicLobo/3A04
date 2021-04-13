@@ -31,7 +31,7 @@ function MiniGame( { health, gamesCompleted, gameOver, active }) {
 
 
   const openGame = (e) => {
-    setGame(e.target.id)
+    setGame(e.target.name)
   }
 
   const back = () => {
@@ -55,24 +55,24 @@ function MiniGame( { health, gamesCompleted, gameOver, active }) {
         { currentGame === '' &&
           <div className="game-col" >
             <div className="game-button">
-              <p>Archives</p>
-              <button id="sidescroll" onClick={openGame}>Upload Files</button>
+              <p>Space Walk</p>
+              <button name="sidescroll" onClick={openGame} disabled={sidescrollFinished}>Dodge the Junk</button>
             </div>
             <div className="game-button">
               <p>Security Room</p>
-              <button id="trivia" onClick={openGame}>Reset Password</button>
+              <button name="trivia" onClick={openGame} disabled={triviaFinished}>Reset Password</button>
             </div>
             <div className="game-button">
               <p>Command Center</p>
-              <button id="matching" onClick={openGame}>Map Stars</button>
+              <button name="matching" onClick={openGame} disabled={matchingFinished}>Map Stars</button>
             </div>
             <div className="game-button">
               <p>Docking Bay</p>
-              <button id="fixship" onClick={openGame}>Repair Engine</button>
+              <button name="fixship" onClick={openGame} disabled={fixshipFinished}>Repair Engine</button>
             </div>
             <div className="game-button">
               <p>Fuel Pit</p>
-              <button id="maze" onClick={openGame}>Switch Fuel Core</button>
+              <button name="maze" onClick={openGame} disabled={mazeFinished}>Switch Fuel Core</button>
             </div>
           </div>
         }
