@@ -71,6 +71,7 @@ function Matching({ back, difficulty, character }) {
         delay = true;
       } else {
         successNum += 2;
+        //score += 100;
       }
       selectedCards = [];
     }
