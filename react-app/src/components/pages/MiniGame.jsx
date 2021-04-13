@@ -17,6 +17,8 @@ function MiniGame( { health, gamesCompleted, gameOver, active }) {
   
   const [difficulty, setDiff] = useState(1);
   const [character, setCharacter] = useState('Default Name');
+  
+  const [currentGame, setGame] = useState('')
 
   useEffect(() => {
     if (ls.get('difficulty')) {
@@ -27,7 +29,6 @@ function MiniGame( { health, gamesCompleted, gameOver, active }) {
     }
   },[difficulty, character])
 
-  const [currentGame, setGame] = useState('')
 
   const openGame = (e) => {
     setGame(e.target.id)
