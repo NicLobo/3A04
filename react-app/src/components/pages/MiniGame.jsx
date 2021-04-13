@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import ls from 'local-storage'
-import Timer from "../pages/Timer"
 
 import SideScroll from '../games/SideScroll'
 import Trivia from '../games/Trivia'
@@ -44,7 +43,6 @@ function MiniGame( { health, gamesCompleted, gameOver, active }) {
         <Link className="" to="/" >
           Back
         </Link>
-        <h4><Timer active={!active} gameOver={gameOver} difficulty={difficulty} /></h4>
           <h4>Health Remaining:
             {health===3 && <img src={healthImg3} height={62} width={175}></img>}
             {health===2 && <img src={healthImg2} height={62} width={120}></img>}

@@ -9,7 +9,6 @@ function App() {
   const [gamesCompleted, setGamesCompleted] = useState()
   const [isGameOver, setIsGameOver] = useState()
   const [result, setResult] = useState()
-  const [timerActive, setTimerActive] = useState();
 
     useEffect(() => {
     initGame()
@@ -19,7 +18,6 @@ function App() {
       setGamesCompleted(game.gamesCompleted)
       setIsGameOver(game.isGameOver)
       setResult(game.result)
-      setTimerActive(game.timerActive)
     })
     // unsubscribe to observable
     return () => subscribe.unsubscribe()
@@ -31,10 +29,10 @@ function App() {
         <Topbar />
         <Switch>
           <Route path="/" exact component={() => 
-            <Home health={health} gamesCompleted={gamesCompleted} gameOver={isGameOver} active={timerActive} />
+            <Home health={health} gamesCompleted={gamesCompleted} gameOver={isGameOver} />
           } />
           <Route path="/minigame" exact component={() => 
-            <MiniGame health={health} gamesCompleted={gamesCompleted} gameOver={isGameOver} active={timerActive} />
+            <MiniGame health={health} gamesCompleted={gamesCompleted} gameOver={isGameOver} />
           } />
           <Route path="/options" exact component={() => 
             <Options/>
