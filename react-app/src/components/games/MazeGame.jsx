@@ -79,7 +79,7 @@ function MazeGame({ difficulty, character, back, setDisabled }) {
                 p.textSize(16)
                 p.text("Good work! You successfully switched cores!", width / 4, height / 2);
                 p.text("Please wait to be rerouted.", width / 4, height / 2 + 20);
-                if(delay >= 400){
+                if(delay >= 200){
                     incrementCompletedGames();
                     score += parseInt(timeBar.time / (4 - difficulty))
                     increaseScore(score * 10);
