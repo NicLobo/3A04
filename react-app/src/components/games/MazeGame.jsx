@@ -5,7 +5,7 @@ import Cell from './maze-classes/cell.js'
 import Maze from './maze-classes/maze.js'
 import Timebar from './maze-classes/Timebar.js'
 
-function MazeGame({ difficulty, character, setGame, setFinished }) {
+function MazeGame({ difficulty, character, back, setDisabled }) {
     var width = 600;
     var height = 520;
     var cols, rows;
@@ -80,6 +80,8 @@ function MazeGame({ difficulty, character, setGame, setFinished }) {
                 // THIS IS scoring for the game - take the time, increase score based on harder difficulty
                 score += parseInt(timeBar.time / (4 - difficulty))
                 increaseScore(score * 10);
+                setDisabled('maze');
+                
             }
             else{
                 // lose state
@@ -247,17 +249,10 @@ function MazeGame({ difficulty, character, setGame, setFinished }) {
         grid[j * cols + i].property = "O";
     }
 
-    const back = () => {
-        if (winCell) {
-          setFinished(true)
-        }
-        setGame('')
-      }
-
     return (
         <div className="text-center">
             <h3>Maze</h3>
-            <button className="btn btn-info" name='maze' onClick={back}>Return to main hub</button>
+            <button className="btn btn-info" onClick={back}>Return to main hub</button>
             <div className="game mt-2">
                 <Sketch setup={setup} draw={draw} keyPressed={keyPressed} mousePressed={mousePressed} />
             </div>

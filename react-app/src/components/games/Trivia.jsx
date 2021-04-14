@@ -7,7 +7,7 @@ import Timebar from "./trivia-classes/Timebar";
 import Button from "./trivia-classes/Button"
 import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Game'
 
-function Trivia({ difficulty, character, setGame, setFinished }) {
+function Trivia({ difficulty, character, back, setDisabled }) {
   const UNIT = 10; 
   let width = 1000;
   let height = 700;
@@ -90,6 +90,7 @@ function Trivia({ difficulty, character, setGame, setFinished }) {
       if(i === 400){
         incrementCompletedGames();
         increaseScore(score);
+        setDisabled('trivia');
       }
     }
 
@@ -134,13 +135,6 @@ function Trivia({ difficulty, character, setGame, setFinished }) {
       questions.newQuestion();
       time.reset();
     }
-  }
-
-  const back = () => {
-    if (endgame === "won") {
-      setFinished(true)
-    }
-    setGame('')
   }
 
   return (

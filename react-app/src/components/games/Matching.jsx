@@ -2,7 +2,7 @@ import React from "react";
 import Sketch from "react-p5";
 import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Game'
 
-function Matching({ difficulty, character, setGame, setFinished }) {
+function Matching({ difficulty, character, back, setDisabled }) {
   var WIDTH = 640;
   var HEIGHT = 480;
   var rowNum = 3;
@@ -45,6 +45,7 @@ function Matching({ difficulty, character, setGame, setFinished }) {
       p.text("WIN!", WIDTH / 2 - text_size, HEIGHT / 5);
       incrementCompletedGames();
       increaseScore(score);
+      setDisabled('matching');
     } else {
       p.text("GAME OVER!", WIDTH / 2 - text_size * 3.1, HEIGHT / 5);
       decreaseHealth();
@@ -232,13 +233,6 @@ function Matching({ difficulty, character, setGame, setFinished }) {
         this.time--;
       }
     }
-  }
-
-  const back = () => {
-    if (!_timer.isTimeOut() && successNum === 12) {
-      setFinished(true)
-    }
-    setGame('')
   }
 
   return (

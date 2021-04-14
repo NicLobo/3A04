@@ -12,19 +12,23 @@ import healthImg1 from '../../assets/health1.png'
 import healthImg2 from '../../assets/health2.png'
 import healthImg3 from '../../assets/health3.png'
 
-function MiniGame( { health, gamesCompleted, gameOver, score }) {
+function MiniGame( { 
+  health, 
+  gamesCompleted, 
+  gameOver, 
+  score,
+  sidescrollFinished,
+  mazeFinished,
+  matchingFinished,
+  triviaFinished,
+  fixshipFinished,
+  setDisabled
+}) {
   
   const [difficulty, setDiff] = useState(1);
   const [character, setCharacter] = useState('Default Name');
   
   const [currentGame, setGame] = useState('')
-
-  // disabled button states
-  const [sidescrollFinished,setSidescroll] = useState(false)
-  const [mazeFinished,      setMaze] = useState(false)
-  const [matchingFinished,  setMatching] = useState(false)
-  const [triviaFinished,    setTrivia] = useState(false)
-  const [fixshipFinished,   setFixship] = useState(false)
 
   useEffect(() => {
     if (ls.get('difficulty')) {
@@ -38,6 +42,10 @@ function MiniGame( { health, gamesCompleted, gameOver, score }) {
 
   const openGame = (e) => {
     setGame(e.target.name)
+  }
+
+  const back = () => {
+    setGame('')
   }
   
   return (
@@ -78,11 +86,11 @@ function MiniGame( { health, gamesCompleted, gameOver, score }) {
             </div>
           </div>
         }
-        {currentGame === 'sidescroll' && <SideScroll setGame={setGame} setFinished={setSidescroll} difficulty={difficulty} character={character} health={health} />  }
-        {currentGame === 'trivia' && <Trivia setGame={setGame} setFinished={setTrivia} difficulty={difficulty} character={character} health={health} />  }
-        {currentGame === 'matching' && <Matching setGame={setGame} setFinished={setMatching} difficulty={difficulty} character={character} health={health} />  }
-        {currentGame === 'fixship' && <Fixship setGame={setGame} setFinished={setFixship} difficulty={difficulty} character={character} health={health} />  }
-        {currentGame === 'maze' && <MazeGame setGame={setGame} setFinished={setMaze} difficulty={difficulty} character={character} health={health} />  }
+        {currentGame === 'sidescroll' && <SideScroll setDisabled={setDisabled} back={back} difficulty={difficulty} character={character} health={health} />  }
+        {currentGame === 'trivia' && <Trivia setDisabled={setDisabled} back={back} difficulty={difficulty} character={character} health={health} />  }
+        {currentGame === 'matching' && <Matching setDisabled={setDisabled} back={back} difficulty={difficulty} character={character} health={health} />  }
+        {currentGame === 'fixship' && <Fixship setDisabled={setDisabled} back={back} difficulty={difficulty} character={character} health={health} />  }
+        {currentGame === 'maze' && <MazeGame setDisabled={setDisabled} back={back} difficulty={difficulty} character={character} health={health} />  }
       </div>
     </div>
   );

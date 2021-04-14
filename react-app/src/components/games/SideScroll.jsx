@@ -8,7 +8,7 @@ import Avatar from "./side-scroll-classes/avatar.js";
 import Barrier from "./side-scroll-classes/barrier.js";
 import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Game'
 
-function SideScroll({ difficulty, character, setGame, setFinished}) {
+function SideScroll({ difficulty, character, back, setDisabled }) {
 
   let ground;
   let avatar;
@@ -98,6 +98,7 @@ function SideScroll({ difficulty, character, setGame, setFinished}) {
       if (score >= 10) {
         incrementCompletedGames();
         increaseScore(score * 100);
+        setDisabled('sidescroll');
       } else decreaseHealth();
   
       // dark overlay
@@ -142,13 +143,6 @@ function SideScroll({ difficulty, character, setGame, setFinished}) {
       hasGameBegun = true;
       p.loop();
     }
-  }
-
-  const back = () => {
-    if (score >= 10 && isGameOver) {
-      setFinished(true)
-    }
-    setGame('')
   }
 
   return (

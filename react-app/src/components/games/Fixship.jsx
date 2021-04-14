@@ -4,7 +4,7 @@ import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Ga
 import Hole from "./fix-ship-classes/Hole";
 import Healthbar from "./fix-ship-classes/Healthbar"
 import Timebar from "./fix-ship-classes/Timebar"
-function Fixship({ difficulty, character, setGame, setFinished}) {
+function Fixship({ difficulty, character, back, setDisabled }) {
   const UNIT = 10; 
   let score = 0; 
   let width = 1000;
@@ -73,6 +73,7 @@ function Fixship({ difficulty, character, setGame, setFinished}) {
       if(i === 400){
         incrementCompletedGames();
         increaseScore(score);
+        setDisabled('fixship');
       }
     }
 
@@ -100,13 +101,6 @@ function Fixship({ difficulty, character, setGame, setFinished}) {
       hole.increaseSpeed();
       }
     }
-  }
-
-  const back = () => {
-    if (endgame === "won") {
-      setFinished(true)
-    }
-    setGame('')
   }
 
   return (

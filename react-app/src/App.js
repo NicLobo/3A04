@@ -12,8 +12,23 @@ function App() {
   const [result, setResult] = useState()
   const [score, setScore] = useState()
 
+  // disabled button states
+  const [sidescrollFinished,setSidescroll] = useState(false)
+  const [mazeFinished,      setMaze] = useState(false)
+  const [matchingFinished,  setMatching] = useState(false)
+  const [triviaFinished,    setTrivia] = useState(false)
+  const [fixshipFinished,   setFixship] = useState(false)
+
+  const setDisabled = (game) => {
+    if (game === 'sidescroll')    setSidescroll(true)
+    else if (game === 'maze')     setMaze(true)
+    else if (game === 'trivia')   setTrivia(true)
+    else if (game === 'matching') setMatching(true)
+    else                          setFixship(true)
+  }
+
   useEffect(() => {
-    initGame()
+    initGame();
     // subscribe to gameSubject observable
     const subscribe = gameSubject.subscribe((game) => {
       setHealth(game.health)
@@ -35,7 +50,18 @@ function App() {
             <Home health={health} gamesCompleted={gamesCompleted} gameOver={isGameOver} score={score} />
           } />
           <Route path="/minigame" exact component={() => 
-            <MiniGame health={health} gamesCompleted={gamesCompleted} gameOver={isGameOver} score={score} />
+            <MiniGame 
+              health={health} 
+              gamesCompleted={gamesCompleted} 
+              gameOver={isGameOver} 
+              score={score} 
+              sidescrollFinished={sidescrollFinished}
+              mazeFinished={mazeFinished}
+              matchingFinished={matchingFinished}
+              triviaFinished={triviaFinished}
+              fixshipFinished={fixshipFinished}
+              setDisabled={setDisabled}
+            />
           } />
           <Route path="/options" exact component={() => 
             <Options/>
