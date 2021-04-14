@@ -32,11 +32,11 @@ function Matching({ difficulty, character, back, setDisabled }) {
   }
 
   function draw(p) {
-    p.background(255);
+    p.background(0);
 
     //draw time information
     p.textSize(text_size);
-    p.fill(0);
+    p.fill(255);
     p.strokeWeight(0);
     if (!_timer.isTimeOut() && successNum !== 12) {
       p.text("Time Left: ", WIDTH / 6, HEIGHT / 5);
@@ -46,7 +46,7 @@ function Matching({ difficulty, character, back, setDisabled }) {
       p.text("WIN!", WIDTH / 2 - text_size, HEIGHT / 5);
       endGameDelay += 1;
 
-      if(endGameDelay > FRAMERATE){
+      if(endGameDelay > 2*FRAMERATE){
         incrementCompletedGames();
         increaseScore(score);
         setDisabled('matching');
@@ -55,7 +55,7 @@ function Matching({ difficulty, character, back, setDisabled }) {
     } else if (_timer.isTimeOut() && successNum !== 12){
       p.text("GAME OVER!", WIDTH / 2 - text_size * 3.1, HEIGHT / 5);
       endGameDelay += 1;
-      if (endGameDelay > FRAMERATE) {
+      if (endGameDelay > 2*FRAMERATE) {
         decreaseHealth();
       }
     }
