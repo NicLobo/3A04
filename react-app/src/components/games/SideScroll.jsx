@@ -148,9 +148,7 @@ function SideScroll({ difficulty, character, back, setDisabled }) {
     }
 
     // check for special states (game over or if game hasn't begun)
-    if (isGameOver === true && k.key === 's') {
-      resetGame(p);
-    } else if (hasGameBegun === false && k.key === 's') {
+    if (hasGameBegun === false && k.key === 's') {
       hasGameBegun = true;
       p.loop();
     }
@@ -159,7 +157,7 @@ function SideScroll({ difficulty, character, back, setDisabled }) {
   return (
     <div className="text-center">
         <h3>Junk Jump</h3>
-        <button className="btn btn-primary" className="btn btn-warning" name='sidescroll' onClick={back}>Return to main hub</button>
+        <button className="btn btn-warning" name='sidescroll' onClick={back}>Return to main hub</button>
         <div className="game mt-2">
           <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />
         </div>
