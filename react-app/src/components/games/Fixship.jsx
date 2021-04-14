@@ -72,7 +72,7 @@ function Fixship({ difficulty, character, back, setDisabled }) {
       score += health.getHealth() + holehit;
       if(i === 400){
         incrementCompletedGames();
-        increaseScore(score);
+        increaseScore(score/10);
         setDisabled('fixship');
       }
     }
@@ -105,11 +105,11 @@ function Fixship({ difficulty, character, back, setDisabled }) {
 
   return (
     <div className="text-center">
-      <h3>Sidescroll</h3>
-      <button className="btn btn-warning" name="fixship" onClick={back}>Return to main hub</button>
-      <div className="game mt-2">
-        <Sketch setup={setup} draw={draw} mousePressed={mousePressed}/>
-      </div>
+        <h3>Fixship</h3>
+        <button className="btn btn-warning" onClick={back}>Return to main hub</button>
+        <div className="game mt-2">
+          <Sketch setup={setup} draw={draw} mousePressed={mousePressed}/>
+        </div>
     </div>
   );
 

@@ -23,6 +23,8 @@ function MazeGame({ difficulty, character, back, setDisabled }) {
     var timeBar;
     var openingScreen = true;
 
+    let delay = 0;
+
     function setup(p, canvasParentRef) {
         p.createCanvas(width, height + 10).parent(canvasParentRef);
 
@@ -73,22 +75,26 @@ function MazeGame({ difficulty, character, back, setDisabled }) {
             p.clear();
             if(winCell){
                 // win state
+                delay = delay + 1;
                 p.textSize(16)
                 p.text("Good work! You successfully switched cores!", width / 4, height / 2);
-                p.text("Click \"Back to Menu\" to continue.", width / 4, height / 2 + 20);
-                incrementCompletedGames();
-                // THIS IS scoring for the game - take the time, increase score based on harder difficulty
-                score += parseInt(timeBar.time / (4 - difficulty))
-                increaseScore(score * 10);
-                setDisabled('maze');
-                
+                p.text("Please wait to be rerouted.", width / 4, height / 2 + 20);
+                if(delay >= 400){
+                    incrementCompletedGames();
+                    score += parseInt(timeBar.time / (4 - difficulty))
+                    increaseScore(score * 10);
+                    setDisabled('maze');
+                }
             }
             else{
                 // lose state
+                delay = delay + 1;
                 p.textSize(16)
                 p.text("You ran out of time!", width / 4, height / 2);
-                p.text("Click \"Back to Menu\" to continue.", width / 4, height / 2 + 20);
-                decreaseHealth();
+                p.text("Please wait to be rerouted.", width / 4, height / 2 + 20);
+                if(delay >= 400){
+                    decreaseHealth();
+                }
             }
         }
         else {
