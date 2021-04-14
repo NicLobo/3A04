@@ -45,6 +45,12 @@ h4 {
 }
 
 .endgame {
+    height: calc(100vh - 56px);
+    position: absolute;
+    width: 100%;
+}
+
+.endgame-text{
     margin-top: 10%;
     font-size: 30px;
     letter-spacing: 3px;

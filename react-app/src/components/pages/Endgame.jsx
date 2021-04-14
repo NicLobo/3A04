@@ -1,14 +1,25 @@
+import React, { useState, useEffect } from "react";
+import ls from 'local-storage'
 
-function Endgame({ result, score } ) {
+function Endgame({ result, score, health } ) {
+
+
+    const [character, setCharacter] = useState('Default Name');
+
+    useEffect(() => {
+        if (ls.get('character')) {
+        setCharacter(ls.get('character'))
+        }
+    },[character])
 
     return (
-        <div className="options">
+        <div className={health === 0 ? "endgame bg-danger" : "endgame bg-success"}>
             <div className="container">
                 <h1 className="font-weight-light">Endgame</h1>
             </div>
-        <div className="endgame">
+        <div className="endgame-text">
             <p>{result}</p>
-            <p>Final Score: {score}</p>
+            <p>{character}'s Final Score: {score}</p>
         </div>
         </div>
     );

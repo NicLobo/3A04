@@ -69,8 +69,11 @@ function App() {
         </Switch>
       </Router>)}
 
-      { isGameOver && (   
-      <Endgame result={result} score={score} />
+      { isGameOver && ( 
+        <Router>
+          <Topbar />  
+          <Endgame result={result} score={score} health={health} />
+        </Router>
       )}
     </div>
   );
