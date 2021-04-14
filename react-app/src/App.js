@@ -4,6 +4,12 @@ import { Topbar, Home, MiniGame, Options, Endgame } from "./components/pages";
 import { gameSubject, initGame } from './Game'
 import './App.css'
 
+import useSound from 'use-sound';
+
+import amongusSong from './assets/among-us-song.mp3';
+
+
+
 function App() {
 
   const [health, setHealth] = useState()
@@ -18,6 +24,8 @@ function App() {
   const [matchingFinished,  setMatching] = useState(false)
   const [triviaFinished,    setTrivia] = useState(false)
   const [fixshipFinished,   setFixship] = useState(false)
+
+  const [play, { stop, isPlaying }] = useSound(amongusSong)
 
   const setDisabled = (game) => {
     if (game === 'sidescroll')    setSidescroll(true)
@@ -64,7 +72,7 @@ function App() {
             />
           } />
           <Route path="/options" exact component={() => 
-            <Options/>
+            <Options play={play} stop={stop} isPlaying={isPlaying} />
           } />
         </Switch>
       </Router>)}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import ls from 'local-storage'
 
-function Options() {
+function Options({ play, stop, isPlaying }) {
   const [difficulty, setDiff] = useState(1);
   const [character, setCharacter] = useState('');
 
@@ -25,6 +25,14 @@ function Options() {
     let newCharacter = e.target.value
     setCharacter(newCharacter)
     ls.set('character',newCharacter)
+  }
+
+  const controllSound = () => {
+    if (isPlaying) {
+      stop()
+    } else {
+      play()
+    }
   }
 
   return (
@@ -54,6 +62,8 @@ function Options() {
             value={character}
             onChange={updateCharacter}
           />
+          <h4>In-game Sound:</h4>
+          <button className="btn btn-primary" onClick={controllSound}>Play/Pause</button>
         </div>
       </div>
     </div>
