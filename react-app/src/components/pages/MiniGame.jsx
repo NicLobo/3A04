@@ -77,8 +77,8 @@ function MiniGame( {
               <button className="btn btn-danger" name="matching" onClick={openGame}>Map Stars</button>
             </div>
             <div className="game-button">
-              <p>Docking Bay</p>
-              <button className="btn btn-warning" name="fixship" onClick={openGame}>Repair Engine</button>
+              <p>Weapons Bay</p>
+              <button className="btn btn-warning" name="fixship" onClick={openGame}>Destroy Meteors</button>
             </div>
             <div className="game-button">
               <p>Fuel Pit</p>
