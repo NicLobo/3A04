@@ -20,6 +20,7 @@ function Matching({ difficulty, character, back, setDisabled }) {
   var cardList;
   var _timer;
   var score = 0;
+  var endGameDelay = 0;
 
   function setup(p, canvasParentRef) {
     p.createCanvas(WIDTH, HEIGHT).parent(canvasParentRef);
@@ -43,12 +44,20 @@ function Matching({ difficulty, character, back, setDisabled }) {
       _timer.tick(p);
     } else if (!_timer.isTimeOut() && successNum === 12) {
       p.text("WIN!", WIDTH / 2 - text_size, HEIGHT / 5);
-      incrementCompletedGames();
-      increaseScore(score);
-      setDisabled('matching');
-    } else {
+      endGameDelay += 1;
+
+      if(endGameDelay > FRAMERATE){
+        incrementCompletedGames();
+        increaseScore(score);
+        setDisabled('matching');
+      }
+      
+    } else if (_timer.isTimeOut() && successNum !== 12){
       p.text("GAME OVER!", WIDTH / 2 - text_size * 3.1, HEIGHT / 5);
-      decreaseHealth();
+      endGameDelay += 1;
+      if (endGameDelay > FRAMERATE) {
+        decreaseHealth();
+      }
     }
     //delay if two selected cards are not the same.
     if (delay === true) {

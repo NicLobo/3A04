@@ -40,8 +40,9 @@ class Hole{
     }
 
     display(){
-      this.p5.fill("black");
+      this.p5.fill("brown");
       this.p5.ellipse(this.x, this.y, this.diameter, this.diameter);
+      this.p5.fill((40,26,13));
     }
   }
   export default Hole;
