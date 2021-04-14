@@ -7,7 +7,7 @@ import Timebar from "./trivia-classes/Timebar";
 import Button from "./trivia-classes/Button"
 import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Game'
 
-function Trivia({back, difficulty, character }) {
+function Trivia({ difficulty, character, setGame, setFinished }) {
   const UNIT = 10; 
   let width = 1000;
   let height = 700;
@@ -136,12 +136,17 @@ function Trivia({back, difficulty, character }) {
     }
   }
 
-
+  const back = () => {
+    if (endgame === "won") {
+      setFinished(true)
+    }
+    setGame('')
+  }
 
   return (
     <div className="text-center">
         <h3>Trivia</h3>
-        <button className="btn btn-success" onClick={back}>Return to main hub</button>
+        <button className="btn btn-success" name='trivia' onClick={back}>Return to main hub</button>
         <div className="game mt-2">
           <Sketch setup={setup} draw={draw} mousePressed={mousePressed}/>
         </div>

@@ -8,7 +8,7 @@ import Avatar from "./side-scroll-classes/avatar.js";
 import Barrier from "./side-scroll-classes/barrier.js";
 import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Game'
 
-function SideScroll({back, difficulty, character}) {
+function SideScroll({ difficulty, character, setGame, setFinished}) {
 
   let ground;
   let avatar;
@@ -144,10 +144,17 @@ function SideScroll({back, difficulty, character}) {
     }
   }
 
+  const back = () => {
+    if (score >= 10 && isGameOver) {
+      setFinished(true)
+    }
+    setGame('')
+  }
+
   return (
     <div className="text-center">
         <h3>Junk Jump</h3>
-        <button className="btn btn-primary" onClick={back}>Return to main hub</button>
+        <button className="btn btn-primary" className="btn btn-warning" name='sidescroll' onClick={back}>Return to main hub</button>
         <div className="game mt-2">
           <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />
         </div>

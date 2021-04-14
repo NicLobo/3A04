@@ -2,7 +2,7 @@ import React from "react";
 import Sketch from "react-p5";
 import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Game'
 
-function Matching({ back, difficulty, character }) {
+function Matching({ difficulty, character, setGame, setFinished }) {
   var WIDTH = 640;
   var HEIGHT = 480;
   var rowNum = 3;
@@ -234,10 +234,17 @@ function Matching({ back, difficulty, character }) {
     }
   }
 
+  const back = () => {
+    if (!_timer.isTimeOut() && successNum === 12) {
+      setFinished(true)
+    }
+    setGame('')
+  }
+
   return (
     <div className="text-center">
       <h3>Matching</h3>
-      <button className="btn btn-danger" onClick={back}>Return to main hub</button>
+      <button className="btn btn-danger" name='matching' onClick={back}>Return to main hub</button>
       <div className="game mt-2">
         <Sketch setup={setup} draw={draw} mousePressed={mousePressed} />
       </div>

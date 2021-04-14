@@ -12,7 +12,7 @@ function App() {
   const [result, setResult] = useState()
   const [score, setScore] = useState()
 
-    useEffect(() => {
+  useEffect(() => {
     initGame()
     // subscribe to gameSubject observable
     const subscribe = gameSubject.subscribe((game) => {

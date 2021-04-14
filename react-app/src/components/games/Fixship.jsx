@@ -4,7 +4,7 @@ import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Ga
 import Hole from "./fix-ship-classes/Hole";
 import Healthbar from "./fix-ship-classes/Healthbar"
 import Timebar from "./fix-ship-classes/Timebar"
-function Fixship({back, difficulty, character}) {
+function Fixship({ difficulty, character, setGame, setFinished}) {
   const UNIT = 10; 
   let score = 0; 
   let width = 1000;
@@ -102,13 +102,20 @@ function Fixship({back, difficulty, character}) {
     }
   }
 
+  const back = () => {
+    if (endgame === "won") {
+      setFinished(true)
+    }
+    setGame('')
+  }
+
   return (
     <div className="text-center">
-        <h3>Sidescroll</h3>
-        <button className="btn btn-warning" onClick={back}>Return to main hub</button>
-        <div className="game mt-2">
-          <Sketch setup={setup} draw={draw} mousePressed={mousePressed}/>
-        </div>
+      <h3>Sidescroll</h3>
+      <button className="btn btn-warning" name="fixship" onClick={back}>Return to main hub</button>
+      <div className="game mt-2">
+        <Sketch setup={setup} draw={draw} mousePressed={mousePressed}/>
+      </div>
     </div>
   );
 

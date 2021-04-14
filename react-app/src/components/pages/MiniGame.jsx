@@ -19,6 +19,13 @@ function MiniGame( { health, gamesCompleted, gameOver, score }) {
   
   const [currentGame, setGame] = useState('')
 
+  // disabled button states
+  const [sidescrollFinished,setSidescroll] = useState(false)
+  const [mazeFinished,      setMaze] = useState(false)
+  const [matchingFinished,  setMatching] = useState(false)
+  const [triviaFinished,    setTrivia] = useState(false)
+  const [fixshipFinished,   setFixship] = useState(false)
+
   useEffect(() => {
     if (ls.get('difficulty')) {
       setDiff(ls.get('difficulty'))
@@ -31,10 +38,6 @@ function MiniGame( { health, gamesCompleted, gameOver, score }) {
 
   const openGame = (e) => {
     setGame(e.target.name)
-  }
-
-  const back = () => {
-    setGame('')
   }
   
   return (
@@ -75,11 +78,11 @@ function MiniGame( { health, gamesCompleted, gameOver, score }) {
             </div>
           </div>
         }
-        {currentGame === 'sidescroll' && <SideScroll back={back} difficulty={difficulty} character={character} health={health} />  }
-        {currentGame === 'trivia' && <Trivia back={back} difficulty={difficulty} character={character} health={health} />  }
-        {currentGame === 'matching' && <Matching back={back} difficulty={difficulty} character={character} health={health} />  }
-        {currentGame === 'fixship' && <Fixship back={back} difficulty={difficulty} character={character} health={health} />  }
-        {currentGame === 'maze' && <MazeGame back={back} difficulty={difficulty} character={character} health={health} />  }
+        {currentGame === 'sidescroll' && <SideScroll setGame={setGame} setFinished={setSidescroll} difficulty={difficulty} character={character} health={health} />  }
+        {currentGame === 'trivia' && <Trivia setGame={setGame} setFinished={setTrivia} difficulty={difficulty} character={character} health={health} />  }
+        {currentGame === 'matching' && <Matching setGame={setGame} setFinished={setMatching} difficulty={difficulty} character={character} health={health} />  }
+        {currentGame === 'fixship' && <Fixship setGame={setGame} setFinished={setFixship} difficulty={difficulty} character={character} health={health} />  }
+        {currentGame === 'maze' && <MazeGame setGame={setGame} setFinished={setMaze} difficulty={difficulty} character={character} health={health} />  }
       </div>
     </div>
   );
