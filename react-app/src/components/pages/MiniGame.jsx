@@ -49,16 +49,16 @@ function MiniGame( {
   }
   
   return (
-    <div className="mini-game">
+    <div className="main">
       <div className="container">
         <h1 className="font-weight-light">Main Hub</h1>
         <Link className="" to="/" >
           Back
         </Link>
           <h4>Health Remaining:
-            {health === 3 && <img src={healthImg3} alt="" height={62} width={175}></img>}
-            {health === 2 && <img src={healthImg2} alt="" height={62} width={120}></img>}
-            {health === 1 && <img src={healthImg1} alt="" height={62} width={65}></img>}
+            {health === 3 && <img src={healthImg3} alt="3 hearts" height={62} width={175}></img>}
+            {health === 2 && <img src={healthImg2} alt="2 hearts" height={62} width={120}></img>}
+            {health === 1 && <img src={healthImg1} alt="1 heart" height={62} width={65}></img>}
           </h4>
         <h4>Complete {5 - gamesCompleted} More Games!</h4>
         <h4>Score: {score}</h4>

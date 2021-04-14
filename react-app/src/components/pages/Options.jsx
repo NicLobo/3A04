@@ -28,23 +28,26 @@ function Options() {
   }
 
   return (
-    <div className="options">
+    <div className="main options">
       <div className="container">
         <h1 className="font-weight-light">Options</h1>
         <Link className="" to="/" >
           Back
         </Link>
         <div className="text-center">
-          <p>Difficulty: {difficulty}</p>
-          <input
-            type="range"
-            min="1"
-            max="3"
-            step="1"
-            value={difficulty}
-            onChange={updateDifficulty}
-          />
-          <p>Character: {character}</p>
+          <h4>Select your difficulty:</h4>
+          <h5>{difficulty}</h5>
+          <div className="difficulty">
+            <input
+              type="range"
+              min="1"
+              max="3"
+              step="1"
+              value={difficulty}
+              onChange={updateDifficulty}
+            />
+          </div>
+          <h4>Character: {character}</h4>
           <input
             type="text"
             placeholder="Insert name here"

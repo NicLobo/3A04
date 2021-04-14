@@ -13,7 +13,7 @@ function Endgame({ result, score, health } ) {
     },[character])
 
     return (
-        <div className={health === 0 ? "endgame bg-danger" : "endgame bg-success"}>
+        <div className={health === 0 ? "main bg-danger" : "main bg-success"}>
             <div className="container">
                 <h1 className="font-weight-light">Endgame</h1>
             </div>

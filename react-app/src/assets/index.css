@@ -1,10 +1,56 @@
 h4 {
     text-align: center
 }
+.main {
+    min-height: calc(100vh - 56px);
+    position: absolute;
+    width: 100%;
+    background-color: #000;
+    color: #FFF;
+}
+.home h2 {
+    font-size: 3rem;
+    text-align: center;
+    margin: 2rem 0;
+}
+.img-container {
+    margin: 0 auto;
+    width: 60%;
+}
+.home img {
+    width: 100%;
+    margin-top: 2rem;
+}
 .button-container {
     display: flex;
     justify-content: center;
     margin-top: 2rem;
+}
+.options h4 {
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+.options h5 {
+    font-size: 1.5rem;
+}
+.difficulty {
+    position: relative;
+    width: 240px;
+    margin: 0 auto;
+}
+.difficulty input::before, .difficulty input::after {
+    position: absolute;
+    top: -5px;
+    color: #fff;
+    font-size: 1.2rem;
+}
+.difficulty input::before {
+    content: 'Easy';
+    left: 0;
+}
+.difficulty input::after {
+    content: 'Hard';
+    right: 0;
 }
 .big-button {
     width: 200px;
@@ -29,7 +75,7 @@ h4 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid #000;
+    border: 1px solid #fff;
     border-radius: 5px;
 }
 .game-button p {
@@ -37,17 +83,12 @@ h4 {
 }
 .game canvas {
     border: 1px solid #000;
+    background-color: #fff;;
     /* width: unset !important;
     height: unset !important;
     position: relative !important;
     left: 0 !important;
     top: 0 !important; */
-}
-
-.endgame {
-    height: calc(100vh - 56px);
-    position: absolute;
-    width: 100%;
 }
 
 .endgame-text{
