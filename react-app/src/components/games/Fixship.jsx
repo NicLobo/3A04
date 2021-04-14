@@ -72,7 +72,7 @@ function Fixship({back, difficulty, character}) {
       score += health.getHealth() + holehit;
       if(i === 400){
         incrementCompletedGames();
-        increaseScore(score);
+        increaseScore(score/10);
       }
     }
 
