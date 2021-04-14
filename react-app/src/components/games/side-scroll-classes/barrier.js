@@ -1,14 +1,14 @@
 import Shape from "./shape.js";
 
 class Barrier extends Shape{
-  constructor(p, x, yGround){
+  constructor(p, x, yGround, speed){
     let barrierWidth = p.random(10, 30);
     let barrierHeight = p.random(10, 40);
     let y = yGround - barrierHeight;
     super(x, y, barrierWidth, barrierHeight);
     this.p5 = p;
     this.fillColor = p.color(128); 
-    this.speed = 6;
+    this.speed = speed;
     this.hasScoredYet = false;
   }
   

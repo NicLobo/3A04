@@ -16,6 +16,8 @@ function MiniGame( { health, gamesCompleted, gameOver, score }) {
   
   const [difficulty, setDiff] = useState(1);
   const [character, setCharacter] = useState('Default Name');
+  
+  const [currentGame, setGame] = useState('')
 
   useEffect(() => {
     if (ls.get('difficulty')) {
@@ -26,10 +28,9 @@ function MiniGame( { health, gamesCompleted, gameOver, score }) {
     }
   },[difficulty, character])
 
-  const [currentGame, setGame] = useState('')
 
   const openGame = (e) => {
-    setGame(e.target.id)
+    setGame(e.target.name)
   }
 
   const back = () => {
@@ -53,24 +54,24 @@ function MiniGame( { health, gamesCompleted, gameOver, score }) {
         { currentGame === '' &&
           <div className="game-col" >
             <div className="game-button">
-              <p>Archives</p>
-              <button className="btn btn-primary" id="sidescroll" onClick={openGame}>Upload Files</button>
+              <p>Space Walk</p>
+              <button className="btn btn-primary" className="btn btn-primary" name="sidescroll" onClick={openGame} disabled={sidescrollFinished}>Dodge the Junk</button>
             </div>
             <div className="game-button">
               <p>Security Room</p>
-              <button className="btn btn-success" id="trivia" onClick={openGame}>Reset Password</button>
+              <button className="btn btn-primary" name="trivia" onClick={openGame} disabled={triviaFinished}>Reset Password</button>
             </div>
             <div className="game-button">
               <p>Command Center</p>
-              <button className="btn btn-danger" id="matching" onClick={openGame}>Map Stars</button>
+              <button className="btn btn-primary" name="matching" onClick={openGame} disabled={matchingFinished}>Map Stars</button>
             </div>
             <div className="game-button">
               <p>Docking Bay</p>
-              <button className="btn btn-warning" id="fixship" onClick={openGame}>Repair Engine</button>
+              <button className="btn btn-primary" name="fixship" onClick={openGame} disabled={fixshipFinished}>Repair Engine</button>
             </div>
             <div className="game-button">
               <p>Fuel Pit</p>
-              <button className="btn btn-info" id="maze" onClick={openGame}>Switch Fuel Core</button>
+              <button className="btn btn-primary" name="maze" onClick={openGame} disabled={mazeFinished}>Switch Fuel Core</button>
             </div>
           </div>
         }
