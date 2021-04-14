@@ -7,7 +7,8 @@ function Topbar() {
       <nav className="navbar navbar-expand navbar-dark bg-primary">
         <div className="container">
           <Link className="navbar-brand" to="/">
-            Shipwreck!
+            Shipwreck! 
+            <i class="fas fa-skull-crossbones ml-2"></i>
           </Link>
         </div>
       </nav>
