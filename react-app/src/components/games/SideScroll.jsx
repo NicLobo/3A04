@@ -6,7 +6,7 @@ import Sketch from 'react-p5'
 import Ground from "./side-scroll-classes/ground.js";
 import Avatar from "./side-scroll-classes/avatar.js";
 import Barrier from "./side-scroll-classes/barrier.js";
-import { decreaseHealth, incrementCompletedGames } from '../../Game'
+import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Game'
 
 function SideScroll({back, difficulty, character}) {
 
@@ -95,8 +95,10 @@ function SideScroll({back, difficulty, character}) {
     if (isGameOver) {
 
       // win/fail state
-      if (score >= 10) incrementCompletedGames();
-      else decreaseHealth();
+      if (score >= 10) {
+        incrementCompletedGames();
+        increaseScore(score * 100);
+      } else decreaseHealth();
   
       // dark overlay
       p.fill(0, 0, 0, 100);
@@ -145,7 +147,7 @@ function SideScroll({back, difficulty, character}) {
   return (
     <div className="text-center">
         <h3>Junk Jump</h3>
-        <button onClick={back}>Return to main hub</button>
+        <button className="btn btn-primary" onClick={back}>Return to main hub</button>
         <div className="game mt-2">
           <Sketch setup={setup} draw={draw} keyPressed={keyPressed} />
         </div>

@@ -1,20 +1,14 @@
 import {BehaviorSubject} from 'rxjs'
 
 let health = 3;
-let timeLoss = false;
 let gamesCompleted = 0;
+let score = 0;
 
 // create BehaviorSubject observable
 export const gameSubject = new BehaviorSubject()
 
 // initializes the game
 export function initGame() {
-    updateGame()
-}
-
-// call a game timeout
-export function timeout() {
-    timeLoss = true
     updateGame()
 }
 
@@ -28,6 +22,11 @@ export function decreaseHealth () {
     updateGame();
 }
 
+export function increaseScore (gameScore) {
+    score += gameScore;
+    updateGame();
+}
+
 // update the game with potential pawn promotion
 function updateGame() {
     const isGameOver = gameOver()
@@ -36,6 +35,7 @@ function updateGame() {
         gamesCompleted: gamesCompleted,
         isGameOver,
         result: isGameOver ? getGameResult() : null,
+        score: score
     }
     gameSubject.next(newGame)
 }
@@ -43,7 +43,6 @@ function updateGame() {
 function gameOver () {
     if (gamesCompleted === 5) return true;
     else if (health === 0) return true;
-    else if (timeLoss) return true;
 }
 
 // get the result of the game
@@ -53,8 +52,5 @@ function getGameResult () {
     }
     else if (health === 0) {
         return `THE SHIP RAN OUT OF HEALTH, YOU DIED.`
-    }
-    else if (timeLoss) {
-        return `YOU DIDN'T FIX THE SHIP IN TIME, YOU DIED.`
     }
 }

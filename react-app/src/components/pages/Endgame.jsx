@@ -1,5 +1,5 @@
 
-function Endgame({ result, active, health, gamesCompleted } ) {
+function Endgame({ result, score } ) {
 
     return (
         <div className="options">
@@ -8,7 +8,7 @@ function Endgame({ result, active, health, gamesCompleted } ) {
             </div>
         <div className="endgame">
             <p>{result}</p>
-            <p>Final Score: { (health + 1) * (gamesCompleted + 1) * 100 }</p>
+            <p>Final Score: {score}</p>
         </div>
         </div>
     );

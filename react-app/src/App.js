@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Topbar, Home, MiniGame, Options, Endgame } from "./components/pages";
 import { gameSubject, initGame } from './Game'
+import './App.css'
 
 function App() {
 
@@ -9,7 +10,7 @@ function App() {
   const [gamesCompleted, setGamesCompleted] = useState()
   const [isGameOver, setIsGameOver] = useState()
   const [result, setResult] = useState()
-  const [timerActive, setTimerActive] = useState();
+  const [score, setScore] = useState()
 
     useEffect(() => {
     initGame()
@@ -19,7 +20,7 @@ function App() {
       setGamesCompleted(game.gamesCompleted)
       setIsGameOver(game.isGameOver)
       setResult(game.result)
-      setTimerActive(game.timerActive)
+      setScore(game.score)
     })
     // unsubscribe to observable
     return () => subscribe.unsubscribe()
@@ -31,22 +32,19 @@ function App() {
         <Topbar />
         <Switch>
           <Route path="/" exact component={() => 
-            <Home health={health} gamesCompleted={gamesCompleted} gameOver={isGameOver} active={timerActive} />
+            <Home health={health} gamesCompleted={gamesCompleted} gameOver={isGameOver} score={score} />
           } />
           <Route path="/minigame" exact component={() => 
-            <MiniGame health={health} gamesCompleted={gamesCompleted} gameOver={isGameOver} active={timerActive} />
+            <MiniGame health={health} gamesCompleted={gamesCompleted} gameOver={isGameOver} score={score} />
           } />
           <Route path="/options" exact component={() => 
             <Options/>
           } />
-          {/* <Route path="/endgame" exact component={() => 
-            <Endgame/>
-          } /> */}
         </Switch>
       </Router>)}
 
       { isGameOver && (   
-      <Endgame result={result} health={health} gamesCompleted={gamesCompleted} />
+      <Endgame result={result} score={score} />
       )}
     </div>
   );

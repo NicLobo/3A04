@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import ls from 'local-storage'
-import Timer from "../pages/Timer"
 
 import SideScroll from '../games/SideScroll'
 import Trivia from '../games/Trivia'
@@ -13,7 +12,7 @@ import healthImg1 from '../../assets/health1.png'
 import healthImg2 from '../../assets/health2.png'
 import healthImg3 from '../../assets/health3.png'
 
-function MiniGame( { health, gamesCompleted, gameOver, active }) {
+function MiniGame( { health, gamesCompleted, gameOver, score }) {
   
   const [difficulty, setDiff] = useState(1);
   const [character, setCharacter] = useState('Default Name');
@@ -45,34 +44,34 @@ function MiniGame( { health, gamesCompleted, gameOver, active }) {
         <Link className="" to="/" >
           Back
         </Link>
-        <h4><Timer active={!active} gameOver={gameOver} difficulty={difficulty} /></h4>
           <h4>Health Remaining:
-            {health===3 && <img src={healthImg3} height={62} width={175}></img>}
-            {health===2 && <img src={healthImg2} height={62} width={120}></img>}
-            {health===1 && <img src={healthImg1} height={62} width={65}></img>}
+            {health === 3 && <img src={healthImg3} alt="" height={62} width={175}></img>}
+            {health === 2 && <img src={healthImg2} alt="" height={62} width={120}></img>}
+            {health === 1 && <img src={healthImg1} alt="" height={62} width={65}></img>}
           </h4>
-        <h4>Games Completed: {gamesCompleted}</h4>
+        <h4>Complete {5 - gamesCompleted} More Games!</h4>
+        <h4>Score: {score}</h4>
         { currentGame === '' &&
           <div className="game-col" >
             <div className="game-button">
               <p>Space Walk</p>
-              <button name="sidescroll" onClick={openGame} disabled={sidescrollFinished}>Dodge the Junk</button>
+              <button className="btn btn-primary" className="btn btn-primary" name="sidescroll" onClick={openGame} disabled={sidescrollFinished}>Dodge the Junk</button>
             </div>
             <div className="game-button">
               <p>Security Room</p>
-              <button name="trivia" onClick={openGame} disabled={triviaFinished}>Reset Password</button>
+              <button className="btn btn-primary" name="trivia" onClick={openGame} disabled={triviaFinished}>Reset Password</button>
             </div>
             <div className="game-button">
               <p>Command Center</p>
-              <button name="matching" onClick={openGame} disabled={matchingFinished}>Map Stars</button>
+              <button className="btn btn-primary" name="matching" onClick={openGame} disabled={matchingFinished}>Map Stars</button>
             </div>
             <div className="game-button">
               <p>Docking Bay</p>
-              <button name="fixship" onClick={openGame} disabled={fixshipFinished}>Repair Engine</button>
+              <button className="btn btn-primary" name="fixship" onClick={openGame} disabled={fixshipFinished}>Repair Engine</button>
             </div>
             <div className="game-button">
               <p>Fuel Pit</p>
-              <button name="maze" onClick={openGame} disabled={mazeFinished}>Switch Fuel Core</button>
+              <button className="btn btn-primary" name="maze" onClick={openGame} disabled={mazeFinished}>Switch Fuel Core</button>
             </div>
           </div>
         }

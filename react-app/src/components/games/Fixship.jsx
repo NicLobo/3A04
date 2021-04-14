@@ -1,6 +1,6 @@
 import React from "react";
 import Sketch from 'react-p5'
-import { decreaseHealth, incrementCompletedGames } from '../../Game'
+import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Game'
 import Hole from "./fix-ship-classes/Hole";
 import Healthbar from "./fix-ship-classes/Healthbar"
 import Timebar from "./fix-ship-classes/Timebar"
@@ -10,11 +10,12 @@ function Fixship({back, difficulty, character}) {
   let width = 1000;
   let height = 700;
   let hole 
+  let holehit = 0; 
   let time
   let health
   let endgame = "playing";
   let i = 0;
-  let flag =1;
+  let flag = 1;
 
   const setup = (p, canvasParentRef) => {
 
@@ -54,6 +55,7 @@ function Fixship({back, difficulty, character}) {
       } 
       time.tickTime();
       if(time.isTimeout()) {
+
         endgame = "won"
       }
     }
@@ -67,7 +69,11 @@ function Fixship({back, difficulty, character}) {
 
       p.text("ENGINE FIXED!", UNIT*10, UNIT*30);
 
-      incrementCompletedGames();
+      score += health.getHealth() + holehit;
+      if(i === 400){
+        incrementCompletedGames();
+        increaseScore(score);
+      }
     }
 
     else if(endgame === "lost"){
@@ -78,14 +84,16 @@ function Fixship({back, difficulty, character}) {
       if(flag === -1)p.fill(255,255,255); 
     
       p.text("ENGINE BROKEN!", UNIT*10, UNIT*30);
-
+      if(i === 400){
       decreaseHealth();
+      }
     }
     p.redraw();
   }
 
   function mousePressed(p) {
    if(hole.isHit(p.mouseX,p.mouseY)){
+     holehit+=1;
       hole.resetPosition();
       score+=10;
     if(score === 50){
@@ -97,7 +105,7 @@ function Fixship({back, difficulty, character}) {
   return (
     <div className="text-center">
         <h3>Sidescroll</h3>
-        <button onClick={back}>Return to main hub</button>
+        <button className="btn btn-warning" onClick={back}>Return to main hub</button>
         <div className="game mt-2">
           <Sketch setup={setup} draw={draw} mousePressed={mousePressed}/>
         </div>

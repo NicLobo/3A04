@@ -1,6 +1,6 @@
 import React from "react";
 import Sketch from "react-p5";
-import { decreaseHealth, incrementCompletedGames } from '../../Game'
+import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Game'
 
 function Matching({ back, difficulty, character }) {
   var WIDTH = 640;
@@ -19,11 +19,10 @@ function Matching({ back, difficulty, character }) {
   var shapeList;
   var cardList;
   var _timer;
+  var score = 0;
 
   function setup(p, canvasParentRef) {
-    var canvas = p.createCanvas(WIDTH, HEIGHT).parent(canvasParentRef);
-    //canvas.position((p.windowWidth - WIDTH) / 2, (p.windowHeight - HEIGHT) / 2);
-
+    p.createCanvas(WIDTH, HEIGHT).parent(canvasParentRef);
     p.frameRate(FRAMERATE);
     card = new Card(115, 140, sideLength);
     shapeList = card.generateShapeList();
@@ -45,6 +44,7 @@ function Matching({ back, difficulty, character }) {
     } else if (!_timer.isTimeOut() && successNum === 12) {
       p.text("WIN!", WIDTH / 2 - text_size, HEIGHT / 5);
       incrementCompletedGames();
+      increaseScore(score);
     } else {
       p.text("GAME OVER!", WIDTH / 2 - text_size * 3.1, HEIGHT / 5);
       decreaseHealth();
@@ -71,6 +71,7 @@ function Matching({ back, difficulty, character }) {
         delay = true;
       } else {
         successNum += 2;
+        score += 100;
       }
       selectedCards = [];
     }
@@ -236,7 +237,7 @@ function Matching({ back, difficulty, character }) {
   return (
     <div className="text-center">
       <h3>Matching</h3>
-      <button onClick={back}>Return to main hub</button>
+      <button className="btn btn-danger" onClick={back}>Return to main hub</button>
       <div className="game mt-2">
         <Sketch setup={setup} draw={draw} mousePressed={mousePressed} />
       </div>

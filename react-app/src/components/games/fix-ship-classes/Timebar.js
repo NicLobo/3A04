@@ -14,6 +14,10 @@ class Timebar{
     isTimeout(){
       return this.time === 0; 
     }
+    getTime(){
+
+      return this.time;
+    }
 
     reset(){
       this.time = 900;

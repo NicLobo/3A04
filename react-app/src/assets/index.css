@@ -29,7 +29,8 @@ h4 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border: 1px solid #000
+    border: 1px solid #000;
+    border-radius: 5px;
 }
 .game-button p {
     cursor: unset;
@@ -44,5 +45,12 @@ h4 {
 }
 
 .endgame {
+    margin-top: 10%;
+    font-size: 30px;
+    letter-spacing: 3px;
     text-align: center;
+}
+
+.font-weight-light {
+    margin-top: 2%;
 }
