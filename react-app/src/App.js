@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Topbar, Home, MiniGame, Options, Endgame } from "./components/pages";
 import { gameSubject, initGame } from './Game'
+import './App.css'
 
 function App() {
 

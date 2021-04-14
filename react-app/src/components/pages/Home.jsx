@@ -21,7 +21,7 @@ function Home( { health, gamesCompleted, isGameOver, score } ) {
       <div className="container">
         <h1 className="font-weight-light">Home</h1>
         <h4>Health Remaining: {health}</h4>
-        <h4>Games Completed: {gamesCompleted}</h4>
+        <h4>Complete {5 - gamesCompleted} More Games!</h4>
         <h4>Score: {score}</h4>
         <h4>Difficulty: {difficulty}</h4>
         <h4>Character: {character}</h4>

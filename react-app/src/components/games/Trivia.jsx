@@ -141,7 +141,7 @@ function Trivia({back, difficulty, character }) {
   return (
     <div className="text-center">
         <h3>Trivia</h3>
-        <button onClick={back}>Return to main hub</button>
+        <button className="btn btn-success" onClick={back}>Return to main hub</button>
         <div className="game mt-2">
           <Sketch setup={setup} draw={draw} mousePressed={mousePressed}/>
         </div>

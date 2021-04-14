@@ -48,29 +48,29 @@ function MiniGame( { health, gamesCompleted, gameOver, score }) {
             {health === 2 && <img src={healthImg2} alt="" height={62} width={120}></img>}
             {health === 1 && <img src={healthImg1} alt="" height={62} width={65}></img>}
           </h4>
-        <h4>Games Completed: {gamesCompleted}</h4>
+        <h4>Complete {5 - gamesCompleted} More Games!</h4>
         <h4>Score: {score}</h4>
         { currentGame === '' &&
           <div className="game-col" >
             <div className="game-button">
               <p>Archives</p>
-              <button id="sidescroll" onClick={openGame}>Upload Files</button>
+              <button className="btn btn-primary" id="sidescroll" onClick={openGame}>Upload Files</button>
             </div>
             <div className="game-button">
               <p>Security Room</p>
-              <button id="trivia" onClick={openGame}>Reset Password</button>
+              <button className="btn btn-success" id="trivia" onClick={openGame}>Reset Password</button>
             </div>
             <div className="game-button">
               <p>Command Center</p>
-              <button id="matching" onClick={openGame}>Map Stars</button>
+              <button className="btn btn-danger" id="matching" onClick={openGame}>Map Stars</button>
             </div>
             <div className="game-button">
               <p>Docking Bay</p>
-              <button id="fixship" onClick={openGame}>Repair Engine</button>
+              <button className="btn btn-warning" id="fixship" onClick={openGame}>Repair Engine</button>
             </div>
             <div className="game-button">
               <p>Fuel Pit</p>
-              <button id="maze" onClick={openGame}>Switch Fuel Core</button>
+              <button className="btn btn-info" id="maze" onClick={openGame}>Switch Fuel Core</button>
             </div>
           </div>
         }

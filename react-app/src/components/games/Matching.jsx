@@ -237,7 +237,7 @@ function Matching({ back, difficulty, character }) {
   return (
     <div className="text-center">
       <h3>Matching</h3>
-      <button onClick={back}>Return to main hub</button>
+      <button className="btn btn-danger" onClick={back}>Return to main hub</button>
       <div className="game mt-2">
         <Sketch setup={setup} draw={draw} mousePressed={mousePressed} />
       </div>
