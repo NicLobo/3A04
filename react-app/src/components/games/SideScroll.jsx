@@ -31,7 +31,6 @@ function SideScroll({ difficulty, character, back, setDisabled }) {
     p.createCanvas(width, height).parent(canvasParentRef);
     p.textFont('Space Mono');
     ground = new Ground(p, width, height);
-    console.log('setup');
     resetGame(p);
 
     // stop game loop until space bar hit to begin
@@ -81,7 +80,6 @@ function SideScroll({ difficulty, character, back, setDisabled }) {
     avatar = new Avatar(p, ground.y);
     barriers = [new Barrier(p, width, ground.y, speed)];
     p.loop();
-    console.log('reset');
   }
 
   const drawScore = (p) => {
@@ -90,15 +88,14 @@ function SideScroll({ difficulty, character, back, setDisabled }) {
     p.textAlign(p.LEFT);
     p.textSize(15);
     p.text('Score:' + score, 10, 20);
-    console.log('drawing score');
 
     if (isGameOver) {
 
       setTimeout(() => {
-      if (score >= 10) {
-        incrementCompletedGames();
-        increaseScore(score * 100);
-        setDisabled('sidescroll');
+        if (score >= 10) {        
+          incrementCompletedGames();
+          increaseScore(score * 100);
+          setDisabled('sidescroll');
         } else {
           decreaseHealth();
         }
@@ -119,9 +116,9 @@ function SideScroll({ difficulty, character, back, setDisabled }) {
         p.textSize(12);
         p.text('You got passed 10! Now for the next game!', width / 2, height / 2);
       } else {
-      p.text('GAME OVER!', width / 2, height / 3);
+        p.text('GAME OVER!', width / 2, height / 3);
 
-      p.textSize(12);
+        p.textSize(12);
         p.text('Nice try! Better luck next time!', width / 2, height / 2);
       }
     } else if (hasGameBegun === false) {
