@@ -8,7 +8,7 @@ function Topbar() {
         <div className="container">
           <Link className="navbar-brand" to="/">
             Shipwreck! 
-            <i class="fas fa-skull-crossbones ml-2"></i>
+            <i class="fas fa-space-shuttle ml-2"></i>
           </Link>
         </div>
       </nav>
