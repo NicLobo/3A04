@@ -16,6 +16,9 @@ function Fixship({back, difficulty, character}) {
   let endgame = "playing";
   let i = 0;
   let flag = 1;
+  let sx = []
+  let sy = []
+  let sd = []
 
   const setup = (p, canvasParentRef) => {
 
@@ -33,13 +36,30 @@ function Fixship({back, difficulty, character}) {
     hole = new Hole(difficulty, p, width, height);
     health = new Healthbar(5 - difficulty, UNIT, UNIT*5, UNIT*5, p, difficulty);
     time = new Timebar(UNIT*90, UNIT, UNIT*5, UNIT*6, p);
+
+
+    for(let j=0; j< 200; j++){
+      sx.push(p.random(width));
+      sy.push(p.random(height));
+      sd.push(p.random(10));
+    }
+
   }
 
   let draw = (p) => {
     p.clear();
-    p.fill(0);
+    p.fill((10,10,44));
+    p.rect(0,0,1000,1000);
+
+
+    for(let j=0; j< 200; j++){
+      p.fill(255);
+      p.ellipse(sx[j],sy[j],sd[j],sd[j]);
+    }
+
+    p.fill(255);
     p.textSize(30);
-    p.text('Fix the ship ' + character + "!", UNIT*5, UNIT*3);
+    p.text('Destroy the meteors ' + character + "!", UNIT*5, UNIT*3);
 
     time.display();
     health.display();
@@ -61,13 +81,13 @@ function Fixship({back, difficulty, character}) {
     }
 
     else if(endgame === "won"){
-      p.textSize(100);
+      p.textSize(92);
       i = i+1;
       if (i % 50 === 0) flag *=-1
       if(flag === 1) p.fill(0,255,0);
       if(flag === -1)p.fill(255,255,255);  
 
-      p.text("ENGINE FIXED!", UNIT*10, UNIT*30);
+      p.text("METEORS DESTROYED!", UNIT*0, UNIT*30);
 
       score += health.getHealth() + holehit;
       if(i === 400){
@@ -77,13 +97,12 @@ function Fixship({back, difficulty, character}) {
     }
 
     else if(endgame === "lost"){
-      p.textSize(100);
+      p.textSize(98);
       i = i+1;
       if (i % 50 === 0)flag *=-1
       if(flag === 1) p.fill(255,0,0);
       if(flag === -1)p.fill(255,255,255); 
-    
-      p.text("ENGINE BROKEN!", UNIT*10, UNIT*30);
+      p.text("BRACE FOR IMPACT!", UNIT*0, UNIT*30);
       if(i === 400){
       decreaseHealth();
       }
@@ -104,7 +123,7 @@ function Fixship({back, difficulty, character}) {
 
   return (
     <div className="text-center">
-        <h3>Fixship</h3>
+        <h3>Destroy Meteors</h3>
         <button className="btn btn-warning" onClick={back}>Return to main hub</button>
         <div className="game mt-2">
           <Sketch setup={setup} draw={draw} mousePressed={mousePressed}/>
