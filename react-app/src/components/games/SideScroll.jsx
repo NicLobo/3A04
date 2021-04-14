@@ -94,12 +94,16 @@ function SideScroll({ difficulty, character, back, setDisabled }) {
 
     if (isGameOver) {
 
-      // win/fail state
+      setTimeout(() => {
       if (score >= 10) {
         incrementCompletedGames();
         increaseScore(score * 100);
         setDisabled('sidescroll');
-      } else decreaseHealth();
+        } else {
+          decreaseHealth();
+        }
+      }, 2000);
+    
   
       // dark overlay
       p.fill(0, 0, 0, 100);
@@ -109,10 +113,17 @@ function SideScroll({ difficulty, character, back, setDisabled }) {
       p.textAlign(p.CENTER);
       p.textSize(35);
       p.fill(255);
+      if (score >= 10) {  
+        p.text('Congrats!', width / 2, height / 3);
+
+        p.textSize(12);
+        p.text('You got passed 10! Now for the next game!', width / 2, height / 2);
+      } else {
       p.text('GAME OVER!', width / 2, height / 3);
 
       p.textSize(12);
-      p.text('Nice try! Press S to play again.', width / 2, height / 2);
+        p.text('Nice try! Better luck next time!', width / 2, height / 2);
+      }
     } else if (hasGameBegun === false) {
       // if we're here, then the game has yet to begin for the first time
 
