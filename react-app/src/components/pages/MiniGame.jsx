@@ -55,23 +55,23 @@ function MiniGame( { health, gamesCompleted, gameOver, score }) {
           <div className="game-col" >
             <div className="game-button">
               <p>Space Walk</p>
-              <button className="btn btn-primary" className="btn btn-primary" name="sidescroll" onClick={openGame} disabled={sidescrollFinished}>Dodge the Junk</button>
+              <button className="btn btn-primary" name="sidescroll" onClick={openGame}>Dodge the Junk</button>
             </div>
             <div className="game-button">
               <p>Security Room</p>
-              <button className="btn btn-primary" name="trivia" onClick={openGame} disabled={triviaFinished}>Reset Password</button>
+              <button className="btn btn-success" name="trivia" onClick={openGame}>Reset Password</button>
             </div>
             <div className="game-button">
               <p>Command Center</p>
-              <button className="btn btn-primary" name="matching" onClick={openGame} disabled={matchingFinished}>Map Stars</button>
+              <button className="btn btn-danger" name="matching" onClick={openGame}>Map Stars</button>
             </div>
             <div className="game-button">
               <p>Docking Bay</p>
-              <button className="btn btn-primary" name="fixship" onClick={openGame} disabled={fixshipFinished}>Repair Engine</button>
+              <button className="btn btn-warning" name="fixship" onClick={openGame}>Repair Engine</button>
             </div>
             <div className="game-button">
               <p>Fuel Pit</p>
-              <button className="btn btn-primary" name="maze" onClick={openGame} disabled={mazeFinished}>Switch Fuel Core</button>
+              <button className="btn btn-info" name="maze" onClick={openGame}>Switch Fuel Core</button>
             </div>
           </div>
         }
