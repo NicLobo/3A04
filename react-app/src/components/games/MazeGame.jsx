@@ -1,15 +1,17 @@
 import React from "react"
 import Sketch from 'react-p5'
-import { decreaseHealth, incrementCompletedGames } from '../../Game'
+import { decreaseHealth, increaseScore, incrementCompletedGames } from '../../Game'
 import Cell from './maze-classes/cell.js'
 import Maze from './maze-classes/maze.js'
 import Timebar from './maze-classes/Timebar.js'
 
-function MazeGame({ back, difficulty, character, score }) {
+function MazeGame({ back, difficulty, character }) {
     var width = 600;
     var height = 520;
     var cols, rows;
     var w = 40;
+
+    var score = 0;
 
     var grid = [];
 
@@ -48,6 +50,8 @@ function MazeGame({ back, difficulty, character, score }) {
             case 3:
                 time = 1200;
                 break;
+            default:
+                time = 1800;
         }
         timeBar = new Timebar(time, 10, 0, height, p);
     }
@@ -74,7 +78,8 @@ function MazeGame({ back, difficulty, character, score }) {
                 p.text("Click \"Back to Menu\" to continue.", width / 4, height / 2 + 20);
                 incrementCompletedGames();
                 // THIS IS scoring for the game - take the time, increase score based on harder difficulty
-                // score += timeBar.time / (4 - difficulty)
+                score += parseInt(timeBar.time / (4 - difficulty))
+                increaseScore(score * 10);
             }
             else{
                 // lose state

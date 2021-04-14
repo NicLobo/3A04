@@ -5,9 +5,9 @@ import QA from "./trivia-classes/QA";
 import Healthbar from "./trivia-classes/Healthbar";
 import Timebar from "./trivia-classes/Timebar";
 import Button from "./trivia-classes/Button"
-import { decreaseHealth, incrementCompletedGames } from '../../Game'
+import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Game'
 
-function Trivia({back, difficulty, character, /*score*/ }) {
+function Trivia({back, difficulty, character }) {
   const UNIT = 10; 
   let width = 1000;
   let height = 700;
@@ -15,13 +15,14 @@ function Trivia({back, difficulty, character, /*score*/ }) {
   let questions
   let health
   let time
-  let qAnswered;
+  let qAnswered = 0;
   let buttonA;
   let buttonB;
   let buttonC; 
   let buttonD;
   let i = 0;
-  let flag = 1; 
+  let flag = 1;
+  let score = 0; 
   const setup = (p, canvasParentRef) => {
 
     //background
@@ -84,11 +85,12 @@ function Trivia({back, difficulty, character, /*score*/ }) {
       if (i % 50 === 0) flag *=-1
       if(flag === 1) p.fill(0,255,0);
       if(flag === -1)p.fill(255,255,255);  
-
+      score = qAnswered * 100
       p.text("ACCESS GRANTED!", UNIT*10, UNIT*30);
-      // score = qAnswered*100 
-      if(i == 400){
-      incrementCompletedGames();}
+      if(i === 400){
+        incrementCompletedGames();
+        increaseScore(score);
+      }
     }
 
     if(endgame === "lost"){
@@ -98,11 +100,9 @@ function Trivia({back, difficulty, character, /*score*/ }) {
       if (i % 50 === 0)flag *=-1
       if(flag === 1) p.fill(255,0,0);
       if(flag === -1)p.fill(255,255,255); 
-    
       p.text("ACCESS DENIED!", UNIT*10, UNIT*30);
-
-      if(i == 400){
-      decreaseHealth();
+      if(i === 400){
+        decreaseHealth();
      }
     }
     p.redraw();

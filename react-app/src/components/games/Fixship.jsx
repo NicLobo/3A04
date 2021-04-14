@@ -1,10 +1,10 @@
 import React from "react";
 import Sketch from 'react-p5'
-import { decreaseHealth, incrementCompletedGames } from '../../Game'
+import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Game'
 import Hole from "./fix-ship-classes/Hole";
 import Healthbar from "./fix-ship-classes/Healthbar"
 import Timebar from "./fix-ship-classes/Timebar"
-function Fixship({back, difficulty, character, /*score*/}) {
+function Fixship({back, difficulty, character}) {
   const UNIT = 10; 
   let score = 0; 
   let width = 1000;
@@ -69,11 +69,10 @@ function Fixship({back, difficulty, character, /*score*/}) {
 
       p.text("ENGINE FIXED!", UNIT*10, UNIT*30);
 
-
-      //THIS IS SCORE
-      //score+= health.getHealth()*100 + 100*holehit;
-      if(i== 400){
-      incrementCompletedGames();
+      score += health.getHealth() + holehit;
+      if(i === 400){
+        incrementCompletedGames();
+        increaseScore(score);
       }
     }
 
@@ -85,7 +84,7 @@ function Fixship({back, difficulty, character, /*score*/}) {
       if(flag === -1)p.fill(255,255,255); 
     
       p.text("ENGINE BROKEN!", UNIT*10, UNIT*30);
-      if(i== 400){
+      if(i === 400){
       decreaseHealth();
       }
     }

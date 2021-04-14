@@ -2,6 +2,7 @@ import {BehaviorSubject} from 'rxjs'
 
 let health = 3;
 let gamesCompleted = 0;
+let score = 0;
 
 // create BehaviorSubject observable
 export const gameSubject = new BehaviorSubject()
@@ -21,6 +22,11 @@ export function decreaseHealth () {
     updateGame();
 }
 
+export function increaseScore (gameScore) {
+    score += gameScore;
+    updateGame();
+}
+
 // update the game with potential pawn promotion
 function updateGame() {
     const isGameOver = gameOver()
@@ -29,6 +35,7 @@ function updateGame() {
         gamesCompleted: gamesCompleted,
         isGameOver,
         result: isGameOver ? getGameResult() : null,
+        score: score
     }
     gameSubject.next(newGame)
 }

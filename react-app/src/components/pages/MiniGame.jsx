@@ -12,7 +12,7 @@ import healthImg1 from '../../assets/health1.png'
 import healthImg2 from '../../assets/health2.png'
 import healthImg3 from '../../assets/health3.png'
 
-function MiniGame( { health, gamesCompleted, gameOver, active }) {
+function MiniGame( { health, gamesCompleted, gameOver, score }) {
   
   const [difficulty, setDiff] = useState(1);
   const [character, setCharacter] = useState('Default Name');
@@ -44,11 +44,12 @@ function MiniGame( { health, gamesCompleted, gameOver, active }) {
           Back
         </Link>
           <h4>Health Remaining:
-            {health===3 && <img src={healthImg3} height={62} width={175}></img>}
-            {health===2 && <img src={healthImg2} height={62} width={120}></img>}
-            {health===1 && <img src={healthImg1} height={62} width={65}></img>}
+            {health===3 && <img src={healthImg3} alt="" height={62} width={175}></img>}
+          {health === 2 && <img src={healthImg2} alt="" height={62} width={120}></img>}
+          {health === 1 && <img src={healthImg1} alt="" height={62} width={65}></img>}
           </h4>
         <h4>Games Completed: {gamesCompleted}</h4>
+        <h4>Score: {score}</h4>
         { currentGame === '' &&
           <div className="game-col" >
             <div className="game-button">

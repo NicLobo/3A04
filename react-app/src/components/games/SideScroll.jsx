@@ -3,7 +3,7 @@ import Sketch from 'react-p5';
 import Ground from "./side-scroll-classes/ground.js";
 import Avatar from "./side-scroll-classes/avatar.js";
 import Barrier from "./side-scroll-classes/barrier.js";
-import { decreaseHealth, incrementCompletedGames } from '../../Game'
+import { decreaseHealth, incrementCompletedGames, increaseScore } from '../../Game'
 
 function SideScroll({back, difficulty, character}) {
 
@@ -88,15 +88,24 @@ function SideScroll({back, difficulty, character}) {
     if (isGameOver) {
 
       if (difficulty === 1) {
-        if (score >= 5) incrementCompletedGames();
+        if (score >= 5) {
+          incrementCompletedGames();
+          increaseScore(score * 100);
+        }
         else decreaseHealth();
       } 
       else if (difficulty === 2) {
-        if (score >= 10) incrementCompletedGames();
+        if (score >= 10) {
+          incrementCompletedGames();
+          increaseScore(score * 100);
+        }
         else decreaseHealth();
       }
       else {
-        if (score >= 15) incrementCompletedGames();
+        if (score >= 15) {
+          incrementCompletedGames();
+          increaseScore(score * 100);
+        }
         else decreaseHealth();
       }
   
