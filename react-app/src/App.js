@@ -43,7 +43,7 @@ function App() {
       </Router>)}
 
       { isGameOver && (   
-      <Endgame result={result} health={health} gamesCompleted={gamesCompleted} score={score} />
+      <Endgame result={result} score={score} />
       )}
     </div>
   );

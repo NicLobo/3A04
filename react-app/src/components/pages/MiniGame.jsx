@@ -44,9 +44,9 @@ function MiniGame( { health, gamesCompleted, gameOver, score }) {
           Back
         </Link>
           <h4>Health Remaining:
-            {health===3 && <img src={healthImg3} alt="" height={62} width={175}></img>}
-          {health === 2 && <img src={healthImg2} alt="" height={62} width={120}></img>}
-          {health === 1 && <img src={healthImg1} alt="" height={62} width={65}></img>}
+            {health === 3 && <img src={healthImg3} alt="" height={62} width={175}></img>}
+            {health === 2 && <img src={healthImg2} alt="" height={62} width={120}></img>}
+            {health === 1 && <img src={healthImg1} alt="" height={62} width={65}></img>}
           </h4>
         <h4>Games Completed: {gamesCompleted}</h4>
         <h4>Score: {score}</h4>

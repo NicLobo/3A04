@@ -1,5 +1,5 @@
 
-function Endgame({ result, health, gamesCompleted, score } ) {
+function Endgame({ result, score } ) {
 
     return (
         <div className="options">
