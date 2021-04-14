@@ -23,7 +23,7 @@ class Timebar{
         case 2:
           this.time = 1500;
           break;
-        case 3:
+        default:
           this.time = 1200;
           break;
       }
